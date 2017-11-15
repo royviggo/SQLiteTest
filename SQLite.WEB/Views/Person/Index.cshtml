@@ -1,0 +1,15 @@
+﻿@model IEnumerable<SQLite.WEB.Models.PersonViewModel>
+
+@{
+    ViewBag.Title = "Personer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<ul>
+    @foreach (var person in Model)
+    {
+        <li><a href="@Url.Action("Details", new { id = person.Id })">@person.FirstName @person.LastName</a></li>
+    }
+</ul>
