@@ -24,7 +24,41 @@ namespace SQLite.Data.Database
             _dbSet.Add(entity);
         }
 
-        // Find by primary key
+        public void Update(T entity)
+        {
+            var state = GetEntityState(entity);
+            if (state == EntityState.Detached)
+            {
+                try
+                {
+                    // Try attach first
+                    _dbSet.Attach(entity);
+                    SetEntityState(entity, EntityState.Modified);
+                }
+                catch (InvalidOperationException)
+                {
+                    // Find already attached object
+                    var keyNames = ((IObjectContextAdapter)_dbContext).ObjectContext.CreateObjectSet<T>().EntitySet.ElementType.KeyMembers.Select(k => k.Name);
+                    var keyValues = keyNames.Select(keyName => entity.GetType().GetProperty(keyName)?.GetValue(entity)).ToArray();
+                    var attachedEntity = _dbSet.Find(keyValues);
+                    _dbContext.Entry(attachedEntity).CurrentValues.SetValues(entity);
+                    SetEntityState(attachedEntity, EntityState.Modified);
+                }
+            }
+            else if (state == EntityState.Unchanged)
+                SetEntityState(entity, EntityState.Modified);
+        }
+
+        public void Delete(T entity)
+        {
+            _dbSet.Remove(entity);
+        }
+
+        /// <summary>
+        /// Find by primary key
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public T GetById(int id)
         {
             return _dbSet.Find(id);
@@ -45,34 +79,8 @@ namespace SQLite.Data.Database
             return query.SingleOrDefault();
         }
 
-        public void Update(T entity)
-        {
-            var state = GetEntityState(entity);
-            if (state == EntityState.Detached)
-            {
-                try
-                {
-                    // Try attach first
-                    _dbSet.Attach(entity);
-                    SetEntityState(entity, EntityState.Modified);
-                }
-                catch (InvalidOperationException)
-                {
-                    // Find already attached object
-                    var keyNames = ((IObjectContextAdapter)_dbContext).ObjectContext.CreateObjectSet<T>().EntitySet.ElementType.KeyMembers.Select(k => k.Name);
-                    var keyValues = keyNames.Select(keyName => entity.GetType().GetProperty(keyName).GetValue(entity)).ToArray();
-                    var attachedEntity = _dbSet.Find(keyValues);
-                    _dbContext.Entry(attachedEntity).CurrentValues.SetValues(entity);
-                    SetEntityState(attachedEntity, EntityState.Modified);
-                }
-            }
-            else if (state == EntityState.Unchanged)
-                SetEntityState(entity, EntityState.Modified);
-        }
-
         public EntityState GetEntityState(T entity)
         {
-            //_dbSet.Attach(entity);
             return _dbContext.Entry(entity).State;
         }
 
@@ -84,22 +92,17 @@ namespace SQLite.Data.Database
         public T GetOriginal(T entity)
         {
             var original = (T)Activator.CreateInstance(typeof(T));
-            Type type = typeof(T);
+            var type = typeof(T);
 
             var values = _dbContext.Entry(entity).OriginalValues;
 
             foreach (var name in values.PropertyNames)
             {
                 var property = type.GetProperty(name);
-                property.SetValue(original, values.GetValue<object>(name));
+                property?.SetValue(original, values.GetValue<object>(name));
             }
 
             return original;
-        }
-
-        public void Delete(T entity)
-        {
-            _dbSet.Remove(entity);
         }
 
         public IQueryable<T> AsQueryable()
@@ -107,7 +110,7 @@ namespace SQLite.Data.Database
             return _dbSet.AsQueryable();
         }
 
-        public IEnumerable<T> All()
+        public IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();
         }
@@ -121,32 +124,6 @@ namespace SQLite.Data.Database
         {
             return RunQuery(skip, take, filter, orderBy, includes);
         }
-
-        //public IQueryable<T> Filter(IEnumerable<DbFilter> filter, IEnumerable<Expression<Func<T, bool>>> moreExpressions = null, params Expression<Func<T, object>>[] includes)
-        //{
-        //    var query = AsQueryable();
-
-        //    if (includes != null)
-        //        query = includes.Aggregate(query, (current, inc) => current.Include(inc));
-
-        //    var exp = ExpressionUtil.GetExpression<T>(filter.ToList());
-        //    var res = query;
-
-        //    if (exp != null)
-        //        res = res.Where(exp);
-
-
-
-        //    if (moreExpressions != null && moreExpressions.Any())
-        //    {
-        //        foreach (var moreExpression in moreExpressions)
-        //        {
-        //            res = res.Where(moreExpression);
-        //        }
-        //    }
-
-        //    return res;
-        //}
 
         public DbSqlQuery<T> SqlQuery(string q, params object[] parameters)
         {

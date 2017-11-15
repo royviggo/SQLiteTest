@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using SQLite.Data.Interfaces;
 
@@ -14,5 +15,11 @@ namespace SQLite.Data.Models
 
         [Column("last_name"), MaxLength(200)]
         public string LastName { get; set; }
+
+        [Column("created_date")]
+        public DateTime CreatedDate { get; set; }
+
+        [Column("modified_date")]
+        public DateTime ModifiedDate { get; set; }
     }
 }

@@ -27,6 +27,43 @@ namespace SQLite.BLL.Services
             return _sqliteUnitOfWork.PersonRepository.GetList(filter, orderBy, includes);
         }
 
+        public int Create(Person person)
+        {
+            person.CreatedDate = DateTime.Now;
+            person.ModifiedDate = DateTime.Now;
+
+            _sqliteUnitOfWork.PersonRepository.Add(person);
+            _sqliteUnitOfWork.Save();
+
+            return person.Id;
+        }
+
+        public void Update(Person person)
+        {
+            person.ModifiedDate = DateTime.Now;
+
+            _sqliteUnitOfWork.PersonRepository.Update(person);
+            _sqliteUnitOfWork.Save();
+        }
+
+        public void Delete(Person person)
+        {
+            _sqliteUnitOfWork.PersonRepository.Delete(person);
+            _sqliteUnitOfWork.Save();
+        }
+
+        public void DeleteById(int id)
+        {
+            var person = GetById(id);
+
+            _sqliteUnitOfWork.PersonRepository.Delete(person);
+            _sqliteUnitOfWork.Save();
+        }
+
+        public IQueryable<Person> AsQueryable()
+        {
+            return _sqliteUnitOfWork.PersonRepository.AsQueryable();
+        }
 
     }
 }
