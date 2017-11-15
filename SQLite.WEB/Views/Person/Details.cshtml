@@ -7,6 +7,23 @@
 
 <h2>@ViewBag.Title</h2>
 
+<style>
+    dt {
+        float: left;
+        width: 110px;
+        clear: both;
+    }
+
+    dd {
+        float: left;
+    }
+
+    dl {
+        clear: both;
+        overflow: hidden;
+    }
+</style>
+
 <dl>
     <dt>@Html.LabelFor(m => m.Id)</dt>
     <dd>@Html.DisplayFor(m => m.Id)</dd>
@@ -14,4 +31,8 @@
     <dd>@Html.DisplayFor(m => m.FirstName)</dd>
     <dt>@Html.LabelFor(m => m.LastName)</dt>
     <dd>@Html.DisplayFor(m => m.LastName)</dd>
+    <dt>@Html.LabelFor(m => m.CreatedDate)</dt>
+    <dd>@Html.DisplayFor(m => m.CreatedDate)</dd>
+    <dt>@Html.LabelFor(m => m.ModifiedDate)</dt>
+    <dd>@Html.DisplayFor(m => m.ModifiedDate)</dd>
 </dl>
