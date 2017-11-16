@@ -267,7 +267,7 @@
       <Project>{9a256d6e-c8cc-4b90-88c9-c7b1f627237f}</Project>
       <Name>SQLite.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SQLite.Data\SQLite.DAL.csproj">
+    <ProjectReference Include="..\SQLite.DAL\SQLite.DAL.csproj">
       <Project>{8c0c6de1-50db-4e49-9d53-229cee566e12}</Project>
       <Name>SQLite.DAL</Name>
     </ProjectReference>
