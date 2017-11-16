@@ -84,9 +84,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\SQLite.Data\SQLite.Data.csproj">
+    <ProjectReference Include="..\SQLite.Data\SQLite.DAL.csproj">
       <Project>{8C0C6DE1-50DB-4E49-9D53-229CEE566E12}</Project>
-      <Name>SQLite.Data</Name>
+      <Name>SQLite.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
