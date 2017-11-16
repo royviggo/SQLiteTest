@@ -2,7 +2,7 @@
 using System.Data.Entity.Infrastructure;
 using System.Data.SQLite;
 
-namespace SQLite.Data.Database
+namespace SQLite.DAL.Database
 {
     public class SQLiteConnectionFactory : IDbConnectionFactory
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using SQLite.Data.Models;
+using SQLite.DAL.Models;
 
 namespace SQLite.BLL.Interfaces
 {

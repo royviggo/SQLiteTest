@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SQLite.Data.Models;
+using SQLite.DAL.Models;
 using SQLite.WEB.Models;
 
 namespace SQLite.WEB

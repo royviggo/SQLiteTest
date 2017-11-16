@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SQLite.Data.Interfaces
+namespace SQLite.DAL.Interfaces
 {
     public interface IEntity
     {

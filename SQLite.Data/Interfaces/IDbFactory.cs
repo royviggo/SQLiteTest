@@ -1,6 +1,6 @@
-﻿using SQLite.Data.Database;
+﻿using SQLite.DAL.Database;
 
-namespace SQLite.Data.Interfaces
+namespace SQLite.DAL.Interfaces
 {
     public interface IDbFactory
     {

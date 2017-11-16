@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using SQLite.Data.Models;
+using SQLite.DAL.Models;
 
-namespace SQLite.Data.Database
+namespace SQLite.DAL.Database
 {
     public class SQLiteDbContext : DbContext
     {

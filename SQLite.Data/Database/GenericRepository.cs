@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Linq.Expressions;
-using SQLite.Data.Interfaces;
+using SQLite.DAL.Interfaces;
 
-namespace SQLite.Data.Database
+namespace SQLite.DAL.Database
 {
     public class GenericRepository<T> : IRepository<T> where T : class, IEntity, new()
     {

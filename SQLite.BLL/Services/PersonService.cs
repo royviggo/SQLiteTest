@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using SQLite.BLL.Interfaces;
-using SQLite.Data.Interfaces;
-using SQLite.Data.Models;
+using SQLite.DAL.Interfaces;
+using SQLite.DAL.Models;
 
 namespace SQLite.BLL.Services
 {

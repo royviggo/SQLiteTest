@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SQLite.Data.Interfaces;
+using SQLite.DAL.Interfaces;
 
-namespace SQLite.Data.Models
+namespace SQLite.DAL.Models
 {
     public class Person : IEntity
     {

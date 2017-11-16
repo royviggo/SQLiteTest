@@ -4,8 +4,8 @@ using Ninject;
 using Ninject.Web.Common;
 using SQLite.BLL.Interfaces;
 using SQLite.BLL.Services;
-using SQLite.Data.Database;
-using SQLite.Data.Interfaces;
+using SQLite.DAL.Database;
+using SQLite.DAL.Interfaces;
 
 namespace SQLite.WEB
 {

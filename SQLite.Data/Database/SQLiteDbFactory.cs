@@ -1,7 +1,7 @@
 ﻿using System;
-using SQLite.Data.Interfaces;
+using SQLite.DAL.Interfaces;
 
-namespace SQLite.Data.Database
+namespace SQLite.DAL.Database
 {
     public class SQLiteDbFactory : IDisposable, IDbFactory
     {

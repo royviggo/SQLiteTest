@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Ninject;
 using SQLite.BLL.Interfaces;
-using SQLite.Data.Models;
+using SQLite.DAL.Models;
 using SQLite.WEB.Models;
 
 namespace SQLite.WEB.Controllers

@@ -1,6 +1,6 @@
-﻿using SQLite.Data.Models;
+﻿using SQLite.DAL.Models;
 
-namespace SQLite.Data.Interfaces
+namespace SQLite.DAL.Interfaces
 {
     public interface IUnitOfWork
     {

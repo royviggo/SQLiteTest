@@ -1,8 +1,8 @@
 ﻿using System;
-using SQLite.Data.Interfaces;
-using SQLite.Data.Models;
+using SQLite.DAL.Interfaces;
+using SQLite.DAL.Models;
 
-namespace SQLite.Data.Database
+namespace SQLite.DAL.Database
 {
     public class SQLiteUnitOfWork : IUnitOfWork, IDisposable
     {

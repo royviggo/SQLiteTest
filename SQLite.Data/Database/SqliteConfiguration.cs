@@ -3,7 +3,7 @@ using System.Data.Entity.Core.Common;
 using System.Data.SQLite;
 using System.Data.SQLite.EF6;
 
-namespace SQLite.Data.Database
+namespace SQLite.DAL.Database
 {
     public class SQLiteConfiguration : DbConfiguration
     {
