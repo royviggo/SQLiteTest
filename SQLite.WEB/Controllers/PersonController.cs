@@ -16,7 +16,7 @@ namespace SQLite.WEB.Controllers
         // GET: Person
         public ActionResult Index()
         {
-            var persons = PersonService.GetList(null, null, null);
+            var persons = PersonService.GetAll();
             var viewModel = Mapper.Map<IEnumerable<Person>, IEnumerable<PersonViewModel>>(persons);
 
             return View(viewModel);

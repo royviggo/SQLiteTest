@@ -10,9 +10,9 @@ namespace SQLite.BLL.Services
 {
     public class PersonService : IPersonService
     {
-        private readonly ISQLiteUnitOfWork _sqliteUnitOfWork;
+        private readonly IUnitOfWork _sqliteUnitOfWork;
 
-        public PersonService(ISQLiteUnitOfWork sqliteUnitOfWork)
+        public PersonService(IUnitOfWork sqliteUnitOfWork)
         {
             _sqliteUnitOfWork = sqliteUnitOfWork;
         }
@@ -22,9 +22,9 @@ namespace SQLite.BLL.Services
             return _sqliteUnitOfWork.PersonRepository.GetById(id);
         }
 
-        public IEnumerable<Person> GetList(Expression<Func<Person, bool>> filter, Func<IQueryable<Person>, IOrderedQueryable<Person>> orderBy = null, params Expression<Func<Person, object>>[] includes)
+        public IEnumerable<Person> GetAll()
         {
-            return _sqliteUnitOfWork.PersonRepository.GetList(filter, orderBy, includes);
+            return _sqliteUnitOfWork.PersonRepository.GetAll();
         }
 
         public int Create(Person person)
@@ -58,11 +58,6 @@ namespace SQLite.BLL.Services
 
             _sqliteUnitOfWork.PersonRepository.Delete(person);
             _sqliteUnitOfWork.Save();
-        }
-
-        public IQueryable<Person> AsQueryable()
-        {
-            return _sqliteUnitOfWork.PersonRepository.AsQueryable();
         }
 
     }

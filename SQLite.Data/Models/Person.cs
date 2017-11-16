@@ -5,7 +5,7 @@ using SQLite.Data.Interfaces;
 
 namespace SQLite.Data.Models
 {
-    public class Person : IEntityBase
+    public class Person : IEntity
     {
         [Column("id")]
         public int Id { get; set; }
@@ -17,9 +17,9 @@ namespace SQLite.Data.Models
         public string LastName { get; set; }
 
         [Column("created_date")]
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
         [Column("modified_date")]
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
     }
 }

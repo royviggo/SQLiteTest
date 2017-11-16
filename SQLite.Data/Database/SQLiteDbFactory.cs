@@ -3,7 +3,7 @@ using SQLite.Data.Interfaces;
 
 namespace SQLite.Data.Database
 {
-    public class DbFactory : IDisposable, IDbFactory
+    public class SQLiteDbFactory : IDisposable, IDbFactory
     {
         private SQLiteDbContext _dbSqlite;
 
@@ -11,7 +11,6 @@ namespace SQLite.Data.Database
         {
             return _dbSqlite ?? (_dbSqlite = new SQLiteDbContext());
         }
-
 
         public void Dispose()
         {

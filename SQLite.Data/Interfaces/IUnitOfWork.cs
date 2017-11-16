@@ -2,9 +2,9 @@
 
 namespace SQLite.Data.Interfaces
 {
-    public interface ISQLiteUnitOfWork
+    public interface IUnitOfWork
     {
-        IGenericRepository<Person> PersonRepository { get; }
+        IRepository<Person> PersonRepository { get; }
 
         void Save();
         void Dispose();

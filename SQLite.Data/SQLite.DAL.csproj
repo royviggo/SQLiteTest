@@ -101,16 +101,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\DbFactory.cs" />
+    <Compile Include="Database\SQLiteDbFactory.cs" />
     <Compile Include="Database\GenericRepository.cs" />
     <Compile Include="Database\SQLiteConfiguration.cs" />
     <Compile Include="Database\SQLiteConnectionFactory.cs" />
     <Compile Include="Database\SQLiteDbContext.cs" />
     <Compile Include="Database\SQLiteUnitOfWork.cs" />
     <Compile Include="Interfaces\IDbFactory.cs" />
-    <Compile Include="Interfaces\IEntityBase.cs" />
-    <Compile Include="Interfaces\IGenericRepository.cs" />
-    <Compile Include="Interfaces\ISqliteUnitOfWork.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

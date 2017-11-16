@@ -34,8 +34,8 @@ namespace SQLite.WEB
         {
             // SQLite.Data
             //kernel.Bind<Sparta.Data.Interfaces.IBrukerUnitOfWork>().To<Sparta.Data.Database.BrukerUnitOfWork>();
-            kernel.Bind<ISQLiteUnitOfWork>().To<SQLiteUnitOfWork>().InRequestScope();
-            kernel.Bind<IDbFactory>().To<Data.Database.DbFactory>().InRequestScope();
+            kernel.Bind<IUnitOfWork>().To<SQLiteUnitOfWork>().InRequestScope();
+            kernel.Bind<IDbFactory>().To<SQLiteDbFactory>().InRequestScope();
 
             // SQLite.BLL
             kernel.Bind<IPersonService>().To<PersonService>();
