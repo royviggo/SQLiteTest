@@ -10,6 +10,6 @@
 <ul>
     @foreach (var person in Model)
     {
-        <li><a href="@Url.Action("Details", new { id = person.Id })">@person.FirstName @person.LastName</a></li>
+        <li><a href="@Url.Action("Details", new { id = person.Id })">@person.DisplayNameWithYears</a></li>
     }
 </ul>

@@ -16,6 +16,9 @@ namespace SQLite.DAL.Database
         private IRepository<Person> _personRepository;
         public IRepository<Person> PersonRepository => _personRepository ?? (_personRepository = new GenericRepository<Person>(DbContext));
 
+        private IRepository<SuffixName> _suffixNameRepository;
+        public IRepository<SuffixName> SuffixNameRepository => _suffixNameRepository ?? (_suffixNameRepository = new GenericRepository<SuffixName>(DbContext));
+
         public void Save()
         {
             DbContext.SaveChanges();

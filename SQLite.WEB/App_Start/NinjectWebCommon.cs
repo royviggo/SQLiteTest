@@ -33,7 +33,6 @@ namespace SQLite.WEB
         private static void RegisterServices(IKernel kernel)
         {
             // SQLite.Data
-            //kernel.Bind<Sparta.Data.Interfaces.IBrukerUnitOfWork>().To<Sparta.Data.Database.BrukerUnitOfWork>();
             kernel.Bind<IUnitOfWork>().To<SQLiteUnitOfWork>().InRequestScope();
             kernel.Bind<IDbFactory>().To<SQLiteDbFactory>().InRequestScope();
 

@@ -23,6 +23,7 @@ namespace SQLite.WEB
         protected override void Configure()
         {
             Mapper.CreateMap<Person, PersonViewModel>();
+            Mapper.CreateMap<SuffixName, SuffixNameViewModel>();
         }
     }
 
@@ -33,6 +34,7 @@ namespace SQLite.WEB
         protected override void Configure()
         {
             Mapper.CreateMap<PersonViewModel, Person>();
+            Mapper.CreateMap<SuffixNameViewModel, SuffixName>();
         }
     }
 

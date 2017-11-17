@@ -27,12 +27,42 @@
 <dl>
     <dt>@Html.LabelFor(m => m.Id)</dt>
     <dd>@Html.DisplayFor(m => m.Id)</dd>
+
     <dt>@Html.LabelFor(m => m.FirstName)</dt>
     <dd>@Html.DisplayFor(m => m.FirstName)</dd>
+    <dt>@Html.LabelFor(m => m.FatherName)</dt>
+    <dd>@Html.DisplayFor(m => m.FatherName)</dd>
+    <dt>@Html.LabelFor(m => m.PatronymName)</dt>
+    <dd>@Html.DisplayFor(m => m.PatronymName)</dd>
     <dt>@Html.LabelFor(m => m.LastName)</dt>
     <dd>@Html.DisplayFor(m => m.LastName)</dd>
+    <dt>@Html.LabelFor(m => m.UsePatronym)</dt>
+    <dd>@Html.DisplayFor(m => m.UsePatronym)</dd>
+
+    <dt>@Html.LabelFor(m => m.Gender)</dt>
+    <dd>@Html.DisplayFor(m => m.Gender)</dd>
+
+    <dt>@Html.LabelFor(m => m.BornYear)</dt>
+    <dd>@Html.DisplayFor(m => m.BornYear)</dd>
+    <dt>@Html.LabelFor(m => m.DeathYear)</dt>
+    <dd>@Html.DisplayFor(m => m.DeathYear)</dd>
+    <dt>@Html.LabelFor(m => m.IsLiving)</dt>
+    <dd>@Html.DisplayFor(m => m.IsLiving)</dd>
+
     <dt>@Html.LabelFor(m => m.CreatedDate)</dt>
     <dd>@Html.DisplayFor(m => m.CreatedDate)</dd>
     <dt>@Html.LabelFor(m => m.ModifiedDate)</dt>
     <dd>@Html.DisplayFor(m => m.ModifiedDate)</dd>
 </dl>
+
+<h3>Suffixnavn</h3>
+@if (!Model.SuffixNames.Any())
+{
+    <text><p>Ingen suffixnavn</p></text>
+}
+<ul>
+    @foreach (var suffix in Model.SuffixNames)
+    {
+        <li>@suffix.Name</li>
+    }
+</ul>

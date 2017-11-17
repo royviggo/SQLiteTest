@@ -12,6 +12,8 @@ namespace SQLite.DAL.Database
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Person>().ToTable("Person", "");
+            modelBuilder.Entity<SuffixName>().ToTable("SuffixName", "");
+
             System.Data.Entity.Database.SetInitializer<SQLiteDbContext>(null);
             base.OnModelCreating(modelBuilder);
         }

@@ -82,7 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PersonService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SQLite.Data\SQLite.DAL.csproj">
       <Project>{8C0C6DE1-50DB-4E49-9D53-229CEE566E12}</Project>
