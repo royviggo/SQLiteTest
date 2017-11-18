@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "SQLite Test";
 }
 
 <div class="jumbotron">
@@ -8,8 +8,12 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <h2>Personer</h2>
         <a href="@Url.Action("Index", "Person")">Gå til personliste</a>
+    </div>
+    <div class="col-md-6">
+        <h2>Hendelser</h2>
+        <a href="@Url.Action("Index", "Event")">Gå til hendelsesliste</a>
     </div>
 </div>

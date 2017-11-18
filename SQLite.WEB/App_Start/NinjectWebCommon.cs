@@ -38,6 +38,7 @@ namespace SQLite.WEB
 
             // SQLite.BLL
             kernel.Bind<IPersonService>().To<PersonService>();
+            kernel.Bind<IEventService>().To<EventService>();
         }
     }
 }
