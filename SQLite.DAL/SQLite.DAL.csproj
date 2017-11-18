@@ -106,12 +106,14 @@
     <Compile Include="Database\SQLiteConnectionFactory.cs" />
     <Compile Include="Database\SQLiteDbContext.cs" />
     <Compile Include="Database\SQLiteUnitOfWork.cs" />
+    <Compile Include="Enums\ByNameType.cs" />
+    <Compile Include="Enums\Gender.cs" />
     <Compile Include="Interfaces\IDbFactory.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\SuffixName.cs" />
+    <Compile Include="Models\ByName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

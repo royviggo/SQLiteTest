@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SQLite.DAL.Enums;
 using SQLite.DAL.Interfaces;
 
 namespace SQLite.DAL.Models
@@ -11,23 +12,20 @@ namespace SQLite.DAL.Models
         [Key, Column("id")]
         public int Id { get; set; }
 
-        [Column("first_name"), MaxLength(200)]
+        [Column("first_name"), MaxLength(255)]
         public string FirstName { get; set; }
 
-        [Column("father_name"), MaxLength(200)]
+        [Column("father_name"), MaxLength(255)]
         public string FatherName { get; set; }
 
-        [Column("patronym_name"), MaxLength(200)]
-        public string PatronymName { get; set; }
+        [Column("patronym"), MaxLength(255)]
+        public string Patronym { get; set; }
 
-        [Column("last_name"), MaxLength(200)]
+        [Column("last_name"), MaxLength(255)]
         public string LastName { get; set; }
 
-        [Column("use_patronym", TypeName = "VARCHAR")]
-        public string UsePatronym { get; set; }
-
-        [Column("gender"), MaxLength(1)]
-        public char Gender { get; set; }
+        [Column("gender")]
+        public Gender Gender { get; set; }
 
         [Column("born_year")]
         public int? BornYear { get; set; }
@@ -35,8 +33,8 @@ namespace SQLite.DAL.Models
         [Column("death_year")]
         public int? DeathYear { get; set; }
 
-        [Column("is_living", TypeName = "VARCHAR")]
-        public string IsLiving { get; set; }
+        [Column("living"), MaxLength(1)]
+        public string Living { get; set; }
 
         [Column("created_date")]
         public DateTime? CreatedDate { get; set; }
@@ -45,6 +43,6 @@ namespace SQLite.DAL.Models
         public DateTime? ModifiedDate { get; set; }
 
         [ForeignKey("PersonId")]
-        public virtual ICollection<SuffixName> SuffixNames { get; set; } = new List<SuffixName>();
+        public virtual ICollection<ByName> ByNames { get; set; } = new List<ByName>();
     }
 }

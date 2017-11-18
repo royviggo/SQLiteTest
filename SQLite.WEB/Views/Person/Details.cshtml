@@ -1,11 +1,10 @@
-﻿@model SQLite.WEB.Models.PersonViewModel
+﻿@using SQLite.DAL.Enums
+@model SQLite.WEB.Models.PersonViewModel
 
 @{
     ViewBag.Title = "Person";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>@ViewBag.Title</h2>
 
 <style>
     dt {
@@ -24,6 +23,45 @@
     }
 </style>
 
+<h3>@Model.DisplayName</h3>
+
+<p>
+    @if (@Model.DisplayAka != "")
+    {
+        <text>@Model.DisplayAka<br/></text>
+    }
+    @Model.DisplayYears
+</p>
+
+<hr/>
+
+<h4>Navnevarianter</h4>
+
+<ul>
+    <li>Navn: @Model.DisplayName</li>
+    <li>Navn med AKA: @Model.DisplayNameAka</li>
+    <li>Navn med typonym: @Model.DisplayNameTyponym</li>
+    <li>Navn med AKA og typonym: @Model.DisplayNameAkaTyponym</li>
+</ul>
+
+<hr />
+
+<h4>Ekstranavn</h4>
+@if (!Model.ByNames.Any())
+{
+    <text><p>Ingen ekstranavn</p></text>
+}
+<ul>
+    @foreach (var byname in Model.ByNames)
+    {
+        <li>@byname.ByNameType.ToString(): @byname.Name</li>
+    }
+</ul>
+
+<hr />
+
+<h4>Data</h4>
+
 <dl>
     <dt>@Html.LabelFor(m => m.Id)</dt>
     <dd>@Html.DisplayFor(m => m.Id)</dd>
@@ -32,12 +70,10 @@
     <dd>@Html.DisplayFor(m => m.FirstName)</dd>
     <dt>@Html.LabelFor(m => m.FatherName)</dt>
     <dd>@Html.DisplayFor(m => m.FatherName)</dd>
-    <dt>@Html.LabelFor(m => m.PatronymName)</dt>
-    <dd>@Html.DisplayFor(m => m.PatronymName)</dd>
+    <dt>@Html.LabelFor(m => m.Patronym)</dt>
+    <dd>@Html.DisplayFor(m => m.Patronym)</dd>
     <dt>@Html.LabelFor(m => m.LastName)</dt>
     <dd>@Html.DisplayFor(m => m.LastName)</dd>
-    <dt>@Html.LabelFor(m => m.UsePatronym)</dt>
-    <dd>@Html.DisplayFor(m => m.UsePatronym)</dd>
 
     <dt>@Html.LabelFor(m => m.Gender)</dt>
     <dd>@Html.DisplayFor(m => m.Gender)</dd>
@@ -46,8 +82,8 @@
     <dd>@Html.DisplayFor(m => m.BornYear)</dd>
     <dt>@Html.LabelFor(m => m.DeathYear)</dt>
     <dd>@Html.DisplayFor(m => m.DeathYear)</dd>
-    <dt>@Html.LabelFor(m => m.IsLiving)</dt>
-    <dd>@Html.DisplayFor(m => m.IsLiving)</dd>
+    <dt>@Html.LabelFor(m => m.Living)</dt>
+    <dd>@Html.DisplayFor(m => m.Living)</dd>
 
     <dt>@Html.LabelFor(m => m.CreatedDate)</dt>
     <dd>@Html.DisplayFor(m => m.CreatedDate)</dd>
@@ -55,14 +91,3 @@
     <dd>@Html.DisplayFor(m => m.ModifiedDate)</dd>
 </dl>
 
-<h3>Suffixnavn</h3>
-@if (!Model.SuffixNames.Any())
-{
-    <text><p>Ingen suffixnavn</p></text>
-}
-<ul>
-    @foreach (var suffix in Model.SuffixNames)
-    {
-        <li>@suffix.Name</li>
-    }
-</ul>
