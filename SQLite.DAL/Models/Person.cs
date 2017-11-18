@@ -33,8 +33,8 @@ namespace SQLite.DAL.Models
         [Column("death_year")]
         public int? DeathYear { get; set; }
 
-        [Column("living"), MaxLength(1)]
-        public string Living { get; set; }
+        [Column("status")]
+        public Status Status { get; set; }
 
         [Column("created_date")]
         public DateTime? CreatedDate { get; set; }
