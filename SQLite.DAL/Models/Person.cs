@@ -44,5 +44,8 @@ namespace SQLite.DAL.Models
 
         [ForeignKey("PersonId")]
         public virtual ICollection<ByName> ByNames { get; set; } = new List<ByName>();
+
+        [ForeignKey("PersonId")]
+        public virtual ICollection<Event> Events { get; set; } = new List<Event>();
     }
 }

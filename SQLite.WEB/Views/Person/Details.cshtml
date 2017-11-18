@@ -1,4 +1,4 @@
-﻿@using SQLite.DAL.Enums
+﻿@using SQLite.DAL.Models
 @model SQLite.WEB.Models.PersonViewModel
 
 @{
@@ -9,7 +9,7 @@
 <style>
     dt {
         float: left;
-        width: 110px;
+        width: 100px;
         clear: both;
     }
 
@@ -28,12 +28,12 @@
 <p>
     @if (@Model.DisplayAka != "")
     {
-        <text>@Model.DisplayAka<br/></text>
+        <text>@Model.DisplayAka<br /></text>
     }
     @Model.DisplayYears
 </p>
 
-<hr/>
+<hr />
 
 <h4>Navnevarianter</h4>
 
@@ -57,6 +57,27 @@
         <li>@byname.ByNameType.ToString(): @byname.Name</li>
     }
 </ul>
+
+<hr />
+
+<h4>Hendelser</h4>
+<dl>
+    @foreach (var e in Model.Events)
+    {
+        <dt>@e.EventType.Name:</dt>
+        <dd>
+            @e.SortDate
+            @if (e.Place != null && e.Place.Name.Length > 0)
+            {
+                <text> i @e.Place.Name</text>
+            }
+            @if (!string.IsNullOrEmpty(e.Description))
+            {
+                <text> - @e.Description</text>
+            }
+        </dd>
+    }
+</dl>
 
 <hr />
 

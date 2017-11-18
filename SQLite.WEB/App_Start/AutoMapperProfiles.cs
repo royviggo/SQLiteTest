@@ -24,6 +24,9 @@ namespace SQLite.WEB
         {
             Mapper.CreateMap<Person, PersonViewModel>();
             Mapper.CreateMap<ByName, ByNameViewModel>();
+            Mapper.CreateMap<Place, PlaceViewModel>();
+            Mapper.CreateMap<Event, EventViewModel>();
+            Mapper.CreateMap<EventType, EventTypeViewModel>();
         }
     }
 
@@ -35,6 +38,9 @@ namespace SQLite.WEB
         {
             Mapper.CreateMap<PersonViewModel, Person>();
             Mapper.CreateMap<ByNameViewModel, ByName>();
+            Mapper.CreateMap<PlaceViewModel, Place>();
+            Mapper.CreateMap<EventViewModel, Event>();
+            Mapper.CreateMap<EventTypeViewModel, EventType>();
         }
     }
 

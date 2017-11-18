@@ -15,6 +15,7 @@ namespace SQLite.WEB.Models
         public string LastName { get; set; }
 
         public IEnumerable<ByNameViewModel> ByNames { get; set; }
+        public IEnumerable<EventViewModel> Events { get; set; }
 
         public Gender Gender { get; set; }
 
