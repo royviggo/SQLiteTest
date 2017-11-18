@@ -35,21 +35,21 @@
 
 <hr />
 
-<h4>Navnevarianter</h4>
+<h4>Name variants</h4>
 
 <ul>
-    <li>Navn: @Model.DisplayName</li>
-    <li>Navn med AKA: @Model.DisplayNameAka</li>
-    <li>Navn med typonym: @Model.DisplayNameTyponym</li>
-    <li>Navn med AKA og typonym: @Model.DisplayNameAkaTyponym</li>
+    <li>Name: @Model.DisplayName</li>
+    <li>Name with AKA: @Model.DisplayNameAka</li>
+    <li>Name with typonym: @Model.DisplayNameTyponym</li>
+    <li>Name with AKA and typonym: @Model.DisplayNameAkaTyponym</li>
 </ul>
 
 <hr />
 
-<h4>Ekstranavn</h4>
+<h4>Extra names</h4>
 @if (!Model.ByNames.Any())
 {
-    <text><p>Ingen ekstranavn</p></text>
+    <text><p>No extra names</p></text>
 }
 <ul>
     @foreach (var byname in Model.ByNames)
@@ -60,7 +60,7 @@
 
 <hr />
 
-<h4>Hendelser</h4>
+<h4>Events</h4>
 <dl>
     @foreach (var e in Model.Events)
     {
@@ -69,7 +69,7 @@
             @e.SortDate
             @if (e.Place != null && e.Place.Name.Length > 0)
             {
-                <text> i @e.Place.Name</text>
+                <text> in @e.Place.Name</text>
             }
             @if (!string.IsNullOrEmpty(e.Description))
             {

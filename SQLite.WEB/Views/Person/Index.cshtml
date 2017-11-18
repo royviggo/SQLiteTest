@@ -1,15 +1,36 @@
 ﻿@model IEnumerable<SQLite.WEB.Models.PersonViewModel>
 
 @{
-    ViewBag.Title = "Personer";
+    ViewBag.Title = "Persons";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
 
-<ul>
-    @foreach (var person in Model)
-    {
-        <li><a href="@Url.Action("Details", new { id = person.Id })">@person.DisplayNameAkaTyponym</a> (@person.DisplayYears)</li>
-    }
-</ul>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>First name</th>
+            <th>Patronym</th>
+            <th>Last name</th>
+            <th>Typonym</th>
+            <th>Lifespan</th>
+            <th>Gender</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model.OrderBy(m => m.BornYear))
+        {
+            <tr>
+                <td><a href="@Url.Action("Details", "Person", new {id = person.Id})">@person.FirstName</a></td>
+                <td>@person.Patronym</td>
+                <td>@person.LastName</td>
+                <td>@person.DisplayTyponym</td>
+                <td>@person.DisplayYears</td>
+                <td>@person.Gender</td>
+                <td>@person.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
