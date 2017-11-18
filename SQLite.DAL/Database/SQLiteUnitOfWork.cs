@@ -16,6 +16,9 @@ namespace SQLite.DAL.Database
         private IRepository<Person> _personRepository;
         public IRepository<Person> PersonRepository => _personRepository ?? (_personRepository = new GenericRepository<Person>(DbContext));
 
+        private IRepository<Event> _eventRepository;
+        public IRepository<Event> EventRepository => _eventRepository ?? (_eventRepository = new GenericRepository<Event>(DbContext));
+
         public void Save()
         {
             DbContext.SaveChanges();
