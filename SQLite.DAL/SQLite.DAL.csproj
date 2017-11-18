@@ -108,7 +108,7 @@
     <Compile Include="Database\SQLiteUnitOfWork.cs" />
     <Compile Include="Enums\ByNameType.cs" />
     <Compile Include="Enums\Gender.cs" />
-    <Compile Include="Enums\Living.cs" />
+    <Compile Include="Enums\Status.cs" />
     <Compile Include="Interfaces\IDbFactory.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
