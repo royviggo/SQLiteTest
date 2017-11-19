@@ -80,13 +80,13 @@
   <ItemGroup>
     <Compile Include="Interfaces\IEventService.cs" />
     <Compile Include="Interfaces\IPersonService.cs" />
+    <Compile Include="Models\GenDate.cs" />
+    <Compile Include="Enums\GenDateType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\PersonService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SQLite.DAL\SQLite.DAL.csproj">
       <Project>{8C0C6DE1-50DB-4E49-9D53-229CEE566E12}</Project>
