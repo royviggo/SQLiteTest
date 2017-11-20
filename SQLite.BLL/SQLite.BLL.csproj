@@ -82,6 +82,8 @@
     <Compile Include="Interfaces\IPersonService.cs" />
     <Compile Include="Models\GenDate.cs" />
     <Compile Include="Enums\GenDateType.cs" />
+    <Compile Include="Models\GenDate2.cs" />
+    <Compile Include="Enums\GenDateStringType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\PersonService.cs" />
