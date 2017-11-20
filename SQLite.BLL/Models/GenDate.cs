@@ -5,6 +5,22 @@ using SQLite.BLL.Enums;
 
 namespace SQLite.BLL.Models
 {
+
+    public struct DatePart
+    {
+        public int Year;
+        public int Month;
+        public int Day;
+
+        public DatePart(int year, int month, int day)
+        {
+            //if (!(year >= 0 && year <= 9999 && month >= 0 && month <= 12 && day >= 0 && day <= 31)) throw new ArgumentException("Arguments out of range");
+            Year = year;
+            Month = month;
+            Day = day;
+        }
+    }
+
     public class GenDate
     {
         private readonly GregorianCalendar _calendar = new GregorianCalendar(GregorianCalendarTypes.Localized);
@@ -15,12 +31,17 @@ namespace SQLite.BLL.Models
         public int SortDate { get; private set; }
         public GenDateType DateType { get; private set; }
         public GenDateStringType DateStringType { get; private set; }
+        public DatePart FromDatePart { get; private set; }
+        public DatePart ToDatePart { get; private set; }
+
 
         private string DatePhrase { get; set; }
         private bool IsValid { get; set; }
 
         public GenDate()
         {
+            FromDatePart = new DatePart(1, 1, 1);
+            ToDatePart = new DatePart(9999, 12, 31);
             FromDate = new DateTime(1, 1, 1, _calendar);
             ToDate = new DateTime(9999, 12, 31, _calendar);
             DateType = GenDateType.Exact;
@@ -81,7 +102,7 @@ namespace SQLite.BLL.Models
 
         public GenDate(string dateString)
         {
-            var dateStringObj = new GenDateString(dateString);
+            var dateStringObj = GenDateStringParser.Parse(dateString);
 
             if (DateStringType == GenDateStringType.Date)
             {
