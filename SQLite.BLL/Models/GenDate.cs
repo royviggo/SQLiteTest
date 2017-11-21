@@ -24,6 +24,7 @@ namespace SQLite.BLL.Models
     public class GenDate
     {
         private readonly GregorianCalendar _calendar = new GregorianCalendar(GregorianCalendarTypes.Localized);
+        //private GenDateStringParser<DateStringParser> _stringParser = new GenDateStringParser<DateStringParser>();
 
         public DateTime FromDate { get; private set; }
         public DateTime ToDate { get; private set; }
@@ -33,6 +34,7 @@ namespace SQLite.BLL.Models
         public GenDateStringType DateStringType { get; private set; }
         public DatePart FromDatePart { get; private set; }
         public DatePart ToDatePart { get; private set; }
+        public BaseDateStringParser StringParser { get; set; } = new DateStringParser();
 
 
         private string DatePhrase { get; set; }
@@ -102,7 +104,7 @@ namespace SQLite.BLL.Models
 
         public GenDate(string dateString)
         {
-            var dateStringObj = GenDateStringParser.Parse(dateString);
+            var dateStringObj = Parse(dateString);
 
             if (DateStringType == GenDateStringType.Date)
             {
@@ -118,6 +120,27 @@ namespace SQLite.BLL.Models
             }
 
             SortDate = GetSortDate(FromDate, ToDate, DateType);
+        }
+
+        public GenDate(BaseDateStringParser parser)
+        {
+            StringParser = parser;
+        }
+
+        public GenDateString Parse(string dateString)
+        {
+            return StringParser.Parse(dateString);
+        }
+
+        public GenDate ParseResult(string dateString)
+        {
+            return new GenDate(dateString);
+        }
+
+        public GenDate ParseResult(BaseDateStringParser parser, string dateString)
+        {
+            StringParser = parser;
+            return new GenDate(dateString);
         }
 
         public DateTime GetDateTimeFromStringDate(string sDate)

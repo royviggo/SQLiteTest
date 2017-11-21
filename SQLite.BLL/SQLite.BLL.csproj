@@ -82,7 +82,7 @@
     <Compile Include="Interfaces\IPersonService.cs" />
     <Compile Include="Models\GenDate.cs" />
     <Compile Include="Enums\GenDateType.cs" />
-    <Compile Include="Models\GenDate2.cs" />
+    <Compile Include="Models\GenDateString.cs" />
     <Compile Include="Enums\GenDateStringType.cs" />
     <Compile Include="Models\GenDateStringParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

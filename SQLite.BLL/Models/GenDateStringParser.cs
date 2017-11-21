@@ -2,9 +2,32 @@
 
 namespace SQLite.BLL.Models
 {
-    public static class GenDateStringParser
+    public class GenDateStringParser<T> where T : BaseDateStringParser, new()
     {
-        public static GenDateString Parse(string dateString)
+        private T StringParser { get; }
+
+        public GenDateStringParser()
+        {
+            StringParser = new T();
+        }
+
+        public GenDateString Parse(string dateString)
+        {
+            return StringParser.Parse(dateString);
+        }
+    }
+
+    public class BaseDateStringParser
+    {
+        public virtual GenDateString Parse(string dateString)
+        {
+            return new GenDateString();
+        }
+    }
+
+    public class DateStringParser : BaseDateStringParser
+    {
+        public override GenDateString Parse(string dateString)
         {
             var regex = new Regex(@"^(?<stype>\d)\|(?<dtype>\d)\|(?<fdate>\d{8})\|(?<tdate>\d{8})");
             var m = regex.Match(dateString);
@@ -14,17 +37,17 @@ namespace SQLite.BLL.Models
         }
     }
 
-    public static class LegacyGenDateStringParser
+    public class LegacyDateStringParser : BaseDateStringParser
     {
-        public static GenDateString Parse(string dateString)
+        public override GenDateString Parse(string dateString)
         {
             return new GenDateString();
         }
     }
 
-    public static class RootsMagicGenDateStringParser
+    public class RootsMagicDateStringParser : BaseDateStringParser
     {
-        public static GenDateString Parse(string dateString)
+        public override GenDateString Parse(string dateString)
         {
             return new GenDateString();
         }
