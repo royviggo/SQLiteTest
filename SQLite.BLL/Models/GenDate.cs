@@ -19,6 +19,13 @@ namespace SQLite.BLL.Models
             Month = month;
             Day = day;
         }
+
+        public DatePart(string year, string month, string day)
+        {
+            Year = Convert.ToInt32(year);
+            Month = Convert.ToInt32(month);
+            Day = Convert.ToInt32(day);
+        }
     }
 
     public class GenDate
@@ -56,6 +63,8 @@ namespace SQLite.BLL.Models
 
         public GenDate(DateTime date)
         {
+            FromDatePart = new DatePart(date.Year, date.Month, date.Day);
+            ToDatePart = new DatePart(date.Year, date.Month, date.Day);
             FromDate = new DateTime(date.Year, date.Month, date.Day, _calendar);
             ToDate = new DateTime(date.Year, date.Month, date.Day, _calendar);
             DateType = GenDateType.Exact;
@@ -66,8 +75,24 @@ namespace SQLite.BLL.Models
             SortDate = GetSortDate(FromDate, ToDate, DateType);
         }
 
+        public GenDate(DatePart datePart)
+        {
+            FromDatePart = datePart;
+            ToDatePart = datePart;
+            FromDate = new DateTime(datePart.Year, datePart.Month, datePart.Day, _calendar);
+            ToDate = new DateTime(datePart.Year, datePart.Month, datePart.Day, _calendar);
+            DateType = GenDateType.Exact;
+            DateStringType = GenDateStringType.Date;
+            DatePhrase = "";
+            IsValid = true;
+            DateString = CreateDateString();
+            SortDate = GetSortDate(FromDate, ToDate, DateType);
+        }
+
         public GenDate(DateTime date, GenDateType type)
         {
+            FromDatePart = new DatePart(date.Year, date.Month, date.Day);
+            ToDatePart = new DatePart(date.Year, date.Month, date.Day);
             FromDate = new DateTime(date.Year, date.Month, date.Day, _calendar);
             ToDate = new DateTime(date.Year, date.Month, date.Day, _calendar);
             DateType = type;
@@ -80,6 +105,8 @@ namespace SQLite.BLL.Models
 
         public GenDate(DateTime fromDate, DateTime toDate, GenDateType type)
         {
+            FromDatePart = new DatePart(fromDate.Year, fromDate.Month, fromDate.Day);
+            ToDatePart = new DatePart(toDate.Year, toDate.Month, toDate.Day);
             FromDate = new DateTime(fromDate.Year, fromDate.Month, fromDate.Day, _calendar);
             ToDate = new DateTime(toDate.Year, toDate.Month, toDate.Day, _calendar);
             DateType = type;
@@ -92,6 +119,8 @@ namespace SQLite.BLL.Models
 
         public GenDate(DateTime fromDate, DateTime toDate, string dateString, int sortDate)
         {
+            FromDatePart = new DatePart(fromDate.Year, fromDate.Month, fromDate.Day);
+            ToDatePart = new DatePart(toDate.Year, toDate.Month, toDate.Day);
             FromDate = new DateTime(fromDate.Year, fromDate.Month, fromDate.Day, _calendar);
             ToDate = new DateTime(toDate.Year, toDate.Month, toDate.Day, _calendar);
             DateString = dateString;
@@ -110,6 +139,8 @@ namespace SQLite.BLL.Models
             {
                 FromDate = GetDateTimeFromStringDate(dateStringObj.FromDate);
                 ToDate = GetDateTimeFromStringDate(dateStringObj.ToDate);
+                FromDatePart = new DatePart(FromDate.Year, FromDate.Month, FromDate.Day);
+                ToDatePart = new DatePart(ToDate.Year, ToDate.Month, ToDate.Day);
                 DateType = dateStringObj.DateType;
                 IsValid = true;
             }
@@ -167,8 +198,8 @@ namespace SQLite.BLL.Models
         private string CreateDateString()
         {
             return IsValid
-                ? string.Join(";", new List<string> {DateStringType.ToString(), DateType.ToString(), FromDate.ToString("yyyyMMdd"), ToDate.ToString("yyyyMMdd")})
-                : string.Join(";", new List<string> {DateStringType.ToString(), DateType.ToString(), DatePhrase});
+                ? string.Join("|", new List<string> {DateStringType.ToString(), DateType.ToString(), FromDate.ToString("yyyyMMdd"), ToDate.ToString("yyyyMMdd")})
+                : string.Join("|", new List<string> {DateStringType.ToString(), DateType.ToString(), DatePhrase});
         }
 
         private GenDateType GetGenDateType()

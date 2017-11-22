@@ -206,6 +206,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ByNameTypeViewModel.cs" />
+    <Compile Include="Models\EventTestViewModel.cs" />
     <Compile Include="Models\EventTypeViewModel.cs" />
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\PersonViewModel.cs" />
@@ -252,6 +253,7 @@
     <Content Include="Views\Person\Index.cshtml" />
     <Content Include="Views\Person\Details.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Event\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

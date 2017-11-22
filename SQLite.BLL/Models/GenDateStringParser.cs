@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace SQLite.BLL.Models
 {
@@ -15,6 +17,11 @@ namespace SQLite.BLL.Models
         {
             return StringParser.Parse(dateString);
         }
+
+        public DatePart GetDatePartFromStringDate(string sDate)
+        {
+            return StringParser.GetDatePartFromStringDate(sDate);
+        }
     }
 
     public class BaseDateStringParser
@@ -22,6 +29,11 @@ namespace SQLite.BLL.Models
         public virtual GenDateString Parse(string dateString)
         {
             return new GenDateString();
+        }
+
+        public virtual DatePart GetDatePartFromStringDate(string sDate)
+        {
+            return new DatePart();
         }
     }
 
@@ -34,6 +46,15 @@ namespace SQLite.BLL.Models
 
             return m.Success ? new GenDateString(m.Groups["stype"].Value, m.Groups["dtype"].Value, m.Groups["fdate"].Value, m.Groups["tdate"].Value) 
                 : new GenDateString();
+        }
+
+        public override DatePart GetDatePartFromStringDate(string sDate)
+        {
+            var regex = new Regex(@"^(?<year>\d{4})(?<month>\d{2})(?<day>\d{2})");
+            var m = regex.Match(sDate);
+
+            return m.Success ? new DatePart(m.Groups["year"].Value, m.Groups["month"].Value, m.Groups["day"].Value)
+                : new DatePart();
         }
     }
 

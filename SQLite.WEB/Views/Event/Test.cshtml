@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SQLite.WEB.Models.EventTestViewModel>
+
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Event Type</th>
+            <th>Person</th>
+            <th>Place</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model.OrderBy(m => m.SortDate))
+        {
+            <tr>
+                <td>@e.FromDate</td>
+                <td>@e.EventType.Name</td>
+                <td><a href="@Url.Action("Details", "Person", new {id = e.Person.Id})">@e.Person.DisplayNameTyponym</a></td>
+                <td>
+                    @if (e.Place != null)
+                    {
+                        <text>@e.Place.Name</text>
+                    }
+                </td>
+                <td>
+                    @if (e.Description != null)
+                    {
+                        <text>@e.Description</text>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
