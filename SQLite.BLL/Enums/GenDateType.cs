@@ -3,12 +3,12 @@
     public enum GenDateType
     {
         Invalid = 0,
-        Exact = 1,
-        About = 2,
-        Calculated = 3,
-        Before = 4,
-        After = 5,
-        Between = 6,
-        FromTo = 7,
+        Before = 1,
+        Exact = 2,
+        About = 3,
+        Calculated = 4,
+        Between = 5,
+        FromTo = 6,
+        After = 7,
     }
 }

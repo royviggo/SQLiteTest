@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SQLite.WEB.Models.EventTestViewModel>
+﻿@using SQLite.BLL.Extensions
+@model IEnumerable<SQLite.WEB.Models.EventTestViewModel>
 
 @{
     ViewBag.Title = "Events";
@@ -21,7 +22,7 @@
         @foreach (var e in Model.OrderBy(m => m.SortDate))
         {
             <tr>
-                <td>@e.FromDate</td>
+                <td>@e.GenDate.ToGenString()</td>
                 <td>@e.EventType.Name</td>
                 <td><a href="@Url.Action("Details", "Person", new {id = e.Person.Id})">@e.Person.DisplayNameTyponym</a></td>
                 <td>

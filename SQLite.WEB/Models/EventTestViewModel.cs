@@ -15,10 +15,9 @@ namespace SQLite.WEB.Models
         public GenDate GenDate { get; set; }
         public DatePart FromDatePart { get; set; }
         public GenDateType GenDateType { get; set; }
-        public DateTime FromDate { get; set; }
         public string Description { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
-
+        public string GenDateString { get; set; }
     }
 }
