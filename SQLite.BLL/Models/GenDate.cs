@@ -161,6 +161,11 @@ namespace SQLite.BLL.Models
             return new GenDate(dateString);
         }
 
+        public override string ToString()
+        {
+            return FromDatePart.ToString();
+        }
+
         private int GetSortDate()
         {
             return Convert.ToInt32(FromDatePart.ToSortString() + ((int)DateType).ToString());

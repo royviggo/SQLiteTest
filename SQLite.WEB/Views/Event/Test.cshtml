@@ -22,7 +22,7 @@
         @foreach (var e in Model.OrderBy(m => m.SortDate))
         {
             <tr>
-                <td>@e.GenDate.ToGenString()</td>
+                <td>@e.GenDate</td>
                 <td>@e.EventType.Name</td>
                 <td><a href="@Url.Action("Details", "Person", new {id = e.Person.Id})">@e.Person.DisplayNameTyponym</a></td>
                 <td>
