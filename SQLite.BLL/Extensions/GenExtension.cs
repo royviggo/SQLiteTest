@@ -15,12 +15,12 @@ namespace SQLite.BLL.Extensions
 
         public static string ToSortString(this DatePart datePart)
         {
-            return string.Join("", datePart.Year.ToString(), datePart.Month.ToString(), datePart.Day.ToString());
+            return string.Join("", datePart.Year.ToString().PadLeft(4, '0'), datePart.Month.ToString().PadLeft(2, '0'), datePart.Day.ToString().PadLeft(2, '0'));
         }
 
-        public static string ToString(this DatePart datePart)
+        public static string ToIsoString(this DatePart datePart)
         {
-            return string.Join("-", datePart.Year.ToString(), datePart.Month.ToString(), datePart.Day.ToString());
+            return string.Join("-", datePart.Year.ToString().PadLeft(4, '0'), datePart.Month.ToString().PadLeft(2, '0'), datePart.Day.ToString().PadLeft(2, '0'));
         }
 
         public static string ToGenString(this DatePart datePart)

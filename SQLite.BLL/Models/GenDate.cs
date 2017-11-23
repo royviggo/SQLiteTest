@@ -168,14 +168,14 @@ namespace SQLite.BLL.Models
 
         private int GetSortDate()
         {
-            return Convert.ToInt32(FromDatePart.ToSortString() + ((int)DateType).ToString());
+            return (DatePart.CompareValue(FromDatePart) * 10) + (int)DateType;
         }
 
         private string CreateDateString()
         {
             return IsValid
-                ? string.Join("|", new List<string> {((int)DateStringType).ToString(), ((int)DateType).ToString(), FromDatePart.ToString(), ToDatePart.ToString()})
-                : string.Join("|", new List<string> {((int)DateStringType).ToString(), ((int)DateType).ToString(), DatePhrase});
+                ? string.Join("", new List<string> {((int)DateStringType).ToString(), ((int)DateType).ToString(), FromDatePart.ToSortString(), ToDatePart.ToSortString()})
+                : string.Join("", new List<string> {((int)DateStringType).ToString(), ((int)DateType).ToString(), DatePhrase});
         }
     }
 }

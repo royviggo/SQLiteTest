@@ -33,6 +33,8 @@ namespace SQLite.WEB.Controllers
                 var dateParser = new DateStringParser();
                 var datePart = dateParser.GetDatePartFromStringDate(e.SortDate.ToString());
                 e.GenDate = new GenDate(datePart);
+                e.SortDate = e.GenDate.SortDate;
+                e.DateString = e.GenDate.DateString;
             }
 
             return View(viewModel);

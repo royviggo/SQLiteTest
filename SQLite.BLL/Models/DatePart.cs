@@ -37,10 +37,15 @@ namespace SQLite.BLL.Models
 
         public int CompareTo(DatePart other)
         {
-            var sortDate = Year * 10000 + Month * 100 + Day;
-            var sortDateOther = other.Year * 10000 + other.Month * 100 + other.Day;
+            var sortDate = CompareValue(this);
+            var sortDateOther = CompareValue(other);
 
             return sortDate.CompareTo(sortDateOther);
+        }
+
+        public static int CompareValue(DatePart datePart)
+        {
+            return datePart.Year * 10000 + datePart.Month * 100 + datePart.Day;
         }
 
         public static bool operator ==(DatePart obj1, DatePart obj2)
