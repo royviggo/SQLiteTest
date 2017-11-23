@@ -174,8 +174,8 @@ namespace SQLite.BLL.Models
         private string CreateDateString()
         {
             return IsValid
-                ? string.Join("", new List<string> {((int)DateStringType).ToString(), ((int)DateType).ToString(), FromDatePart.ToSortString(), ToDatePart.ToSortString()})
-                : string.Join("", new List<string> {((int)DateStringType).ToString(), ((int)DateType).ToString(), DatePhrase});
+                ? string.Join("", new List<string> {((int)DateStringType).ToString(), FromDatePart.ToSortString(), ((int)DateType).ToString(), ToDatePart.ToSortString()})
+                : string.Join("", new List<string> {((int)DateStringType).ToString(), DatePhrase});
         }
     }
 }

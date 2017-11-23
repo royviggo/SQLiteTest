@@ -12,6 +12,7 @@
     <thead>
         <tr>
             <th>Date</th>
+            <th>DateString</th>
             <th>Event Type</th>
             <th>Person</th>
             <th>Place</th>
@@ -22,6 +23,7 @@
         @foreach (var e in Model.OrderBy(m => m.SortDate))
         {
             <tr>
+                <td>@e.GenDate</td>
                 <td>@e.DateString</td>
                 <td>@e.EventType.Name</td>
                 <td><a href="@Url.Action("Details", "Person", new {id = e.Person.Id})">@e.Person.DisplayNameTyponym</a></td>

@@ -9,7 +9,7 @@ namespace SQLite.BLL.Models
     {
         public GenDate Parse(string dateString)
         {
-            var regex = new Regex(@"^(?<stype>\d)\|(?<dtype>\d)\|(?<fyear>\d{4})(?<fmonth>\d{2})(?<fday>\d{2})\|(?<tyear>\d{4})(?<tmonth>\d{2})(?<tday>\d{2})");
+            var regex = new Regex(@"^(?<stype>\d)(?<fyear>\d{4})(?<fmonth>\d{2})(?<fday>\d{2})(?<dtype>\d)(?<tyear>\d{4})(?<tmonth>\d{2})(?<tday>\d{2})");
             var m = regex.Match(dateString);
 
             if (m.Success)
@@ -25,8 +25,9 @@ namespace SQLite.BLL.Models
                     return new GenDate(stringTypeOut, dateTypeOut, fromDate, toDate, true);
                 }
             }
+            var datePhrase = dateString.Length > 1 ? dateString.Substring(2, dateString.Length - 1) : "";
 
-            return new GenDate(GenDateStringType.Text, GenDateType.Invalid, dateString, false);
+            return new GenDate(GenDateStringType.Text, GenDateType.Invalid, datePhrase, false);
         }
 
         public DatePart GetDatePartFromStringDate(string sDate)
