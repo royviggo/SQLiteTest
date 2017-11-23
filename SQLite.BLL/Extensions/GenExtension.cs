@@ -38,7 +38,7 @@ namespace SQLite.BLL.Extensions
 
         public static string ToGenString(this GenDate genDate)
         {
-            return genDate.FromDatePart.ToGenString();
+            return genDate.DateFrom.ToGenString();
         }
     }
 }

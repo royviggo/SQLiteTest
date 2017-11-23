@@ -11,6 +11,7 @@
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
+            <th>Date ISO</th>
             <th>Date</th>
             <th>DateString</th>
             <th>Event Type</th>
@@ -23,6 +24,7 @@
         @foreach (var e in Model.OrderBy(m => m.SortDate))
         {
             <tr>
+                <td>@e.GenDate.DateFrom.ToIsoString()</td>
                 <td>@e.GenDate</td>
                 <td>@e.DateString</td>
                 <td>@e.EventType.Name</td>
