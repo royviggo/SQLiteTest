@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using SQLite.DAL.Enums;
 using SQLite.DAL.Extensions;
 using SQLite.DAL.Interfaces;
+// ReSharper disable NonReadonlyMemberInGetHashCode
 
 namespace SQLite.DAL.Models
 {
-    public class GenDate
+    public class GenDate : IEquatable<GenDate>, IComparable<GenDate>
     {
         private readonly GregorianCalendar _calendar = new GregorianCalendar(GregorianCalendarTypes.Localized);
         //private string _dateString;
@@ -35,9 +37,10 @@ namespace SQLite.DAL.Models
         public DatePart DateTo { get; protected set; }
         public string DatePhrase { get; protected set; }
         public bool IsValid { get; protected set; }
+        public int SortDate { get; protected set; }
 
         public string DateString => CreateDateString();
-        public int SortDate => GetSortDate();
+        //public int SortDate => GetSortDate();
 
         public GenDate()
         {
@@ -119,6 +122,47 @@ namespace SQLite.DAL.Models
         //    return new GenDate(dateString);
         //}
 
+        public int CompareTo(GenDate other)
+        {
+            return DateFrom.CompareTo(other.DateFrom);
+
+        }
+
+        public static bool operator ==(GenDate obj1, GenDate obj2)
+        {
+            return obj1 != null && (Equals(obj1, obj2) || obj1.Equals(obj2));
+        }
+
+        public static bool operator !=(GenDate obj1, GenDate obj2)
+        {
+            return !(obj1 == obj2);
+        }
+
+        public bool Equals(GenDate other)
+        {
+            return other != null && (DateType == other.DateType && DateFrom == other.DateFrom && DateTo == other.DateTo 
+                   && DatePhrase == other.DatePhrase && IsValid == other.IsValid && SortDate == other.SortDate);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj != null && (obj.GetType() == GetType() && Equals((GenDate)obj));
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (int) DateType;
+                hashCode = (hashCode * 397) ^ (DateFrom?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ (DateTo?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ (DatePhrase?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ IsValid.GetHashCode();
+                hashCode = (hashCode * 397) ^ SortDate;
+                return hashCode;
+            }
+        }
+
         public override string ToString()
         {
             return DateFrom.ToString();
@@ -132,8 +176,8 @@ namespace SQLite.DAL.Models
         private string CreateDateString()
         {
             return IsValid
-                ? string.Join("", new List<string> {"1", DateFrom.ToSortString(), ((int)DateType).ToString(), DateTo.ToSortString()})
-                : string.Join("", new List<string> {"2", DatePhrase});
+                ? string.Join("", new List<string> { "1", DateFrom.ToSortString(), ((int)DateType).ToString(), DateTo.ToSortString() })
+                : string.Join("", new List<string> { "2", DatePhrase });
         }
     }
 }

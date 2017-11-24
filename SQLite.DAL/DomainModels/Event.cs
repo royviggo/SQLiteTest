@@ -32,9 +32,6 @@ namespace SQLite.DAL.DomainModels
         [Column("date")]
         public GenDate Date { get; set; }
 
-        [Column("sort_date")]
-        public int SortDate { get; set; }
-
         [Column("description"), MaxLength(255)]
         public string Description { get; set; }
 

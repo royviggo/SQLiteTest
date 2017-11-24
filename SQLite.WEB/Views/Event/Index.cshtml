@@ -18,10 +18,10 @@
     </tr>
     </thead>
     <tbody>
-        @foreach (var e in Model.OrderBy(m => m.SortDate))
+        @foreach (var e in Model.OrderBy(m => m.Date))
         {
             <tr>
-                <td>@e.Date</td>
+                <td>@e.Date.SortDate</td>
                 <td>@e.EventType.Name</td>
                 <td><a href="@Url.Action("Details", "Person", new {id = e.Person.Id})">@e.Person.DisplayNameTyponym</a></td>
                 <td>
