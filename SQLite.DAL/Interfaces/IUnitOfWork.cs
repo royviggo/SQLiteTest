@@ -1,4 +1,4 @@
-﻿using SQLite.DAL.Models;
+﻿using SQLite.DAL.DomainModels;
 
 namespace SQLite.DAL.Interfaces
 {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using SQLite.BLL.Interfaces;
+using SQLite.DAL.DomainModels;
 using SQLite.DAL.Interfaces;
-using SQLite.DAL.Models;
+using SQLite.BLL.Interfaces;
 
 namespace SQLite.BLL.Services
 {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SQLite.DAL.Enums;
 using SQLite.DAL.Interfaces;
+using SQLite.DAL.Models;
 
-namespace SQLite.DAL.Models
+namespace SQLite.DAL.DomainModels
 {
     public class Event : IEntity
     {
@@ -28,6 +28,9 @@ namespace SQLite.DAL.Models
         public int PlaceId { get; set; }
 
         public virtual Place Place { get; set; }
+
+        [Column("date")]
+        public GenDate Date { get; set; }
 
         [Column("sort_date")]
         public int SortDate { get; set; }

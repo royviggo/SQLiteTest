@@ -22,5 +22,11 @@ namespace SQLite.DAL.Models
             {11, "Nov" },
             {12, "Dec" },
         };
+
+        public static string ToMonthName(this int month)
+        {
+            return MonthName.GetMonths().ContainsKey(month) ? MonthName.GetMonths()[month] : "";
+        }
+
     }
 }

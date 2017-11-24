@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using SQLite.DAL.Enums;
 using SQLite.DAL.Interfaces;
 
-namespace SQLite.DAL.Models
+namespace SQLite.DAL.DomainModels
 {
     public class Person : IEntity
     {

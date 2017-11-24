@@ -1,13 +1,16 @@
 using System;
-using SQLite.DAL.Extensions;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SQLite.DAL.Models
 {
-    public struct DatePart : IEquatable<DatePart>, IComparable<DatePart>
+    [ComplexType]
+    public class DatePart : IEquatable<DatePart>, IComparable<DatePart>
     {
-        public readonly int Year;
-        public readonly int Month;
-        public readonly int Day;
+        public int Year { get; protected set; }
+        public int Month { get; protected set; }
+        public int Day { get; protected set; }
+
+        public DatePart() { }
 
         public DatePart(int year, int month, int day)
         {
@@ -50,7 +53,7 @@ namespace SQLite.DAL.Models
 
         public static bool operator ==(DatePart obj1, DatePart obj2)
         {
-            return Equals(obj1, obj2) || obj1.Equals(obj2);
+            return obj1 != null && (Equals(obj1, obj2) || obj1.Equals(obj2));
         }
 
         public static bool operator !=(DatePart obj1, DatePart obj2)
@@ -60,7 +63,7 @@ namespace SQLite.DAL.Models
 
         public bool Equals(DatePart other)
         {
-            return Year == other.Year && Month == other.Month && Day == other.Day;
+            return other != null && (Year == other.Year && Month == other.Month && Day == other.Day);
         }
 
         public override bool Equals(object obj)

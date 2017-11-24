@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using SQLite.DAL.Models;
+﻿using System.Collections.Generic;
+using SQLite.DAL.DomainModels;
 
 namespace SQLite.BLL.Interfaces
 {

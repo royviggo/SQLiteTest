@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SQLite.DAL.Models
+namespace SQLite.DAL.DomainModels
 {
     public class EventType
     {

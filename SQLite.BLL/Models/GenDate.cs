@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using SQLite.BLL.Enums;
-using SQLite.BLL.Extensions;
-using SQLite.BLL.Interfaces;
+using SQLite.DAL.Enums;
+using SQLite.DAL.Extensions;
+using SQLite.DAL.Interfaces;
 
-namespace SQLite.BLL.Models
+namespace SQLite.DAL.Models
 {
     public class GenDate
     {

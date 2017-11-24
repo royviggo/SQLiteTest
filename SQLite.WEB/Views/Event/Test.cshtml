@@ -1,4 +1,4 @@
-﻿@using SQLite.BLL.Extensions
+﻿@using SQLite.DAL.Extensions
 @model IEnumerable<SQLite.WEB.Models.EventTestViewModel>
 
 @{
@@ -13,7 +13,7 @@
         <tr>
             <th>Date ISO</th>
             <th>Date</th>
-            <th>DateString</th>
+            @*<th>DateString</th>*@
             <th>Event Type</th>
             <th>Person</th>
             <th>Place</th>
@@ -24,9 +24,9 @@
         @foreach (var e in Model.OrderBy(m => m.SortDate))
         {
             <tr>
-                <td>@e.GenDate.DateFrom.ToIsoString()</td>
-                <td>@e.GenDate</td>
-                <td>@e.DateString</td>
+                <td>@e.Date.DateFrom.ToIsoString()</td>
+                <td>@e.Date</td>
+              @*  <td>@e.Date.DateString</td>*@
                 <td>@e.EventType.Name</td>
                 <td><a href="@Url.Action("Details", "Person", new {id = e.Person.Id})">@e.Person.DisplayNameTyponym</a></td>
                 <td>

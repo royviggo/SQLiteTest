@@ -107,17 +107,27 @@
     <Compile Include="Database\SQLiteDbContext.cs" />
     <Compile Include="Database\SQLiteUnitOfWork.cs" />
     <Compile Include="Enums\ByNameType.cs" />
+    <Compile Include="Enums\GenDateStringType.cs" />
+    <Compile Include="Enums\GenDateType.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\Status.cs" />
+    <Compile Include="Extensions\GenExtension.cs" />
+    <Compile Include="Interfaces\IDateStringParser.cs" />
     <Compile Include="Interfaces\IDbFactory.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\EventType.cs" />
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\ByName.cs" />
-    <Compile Include="Models\Place.cs" />
+    <Compile Include="Models\DatePart.cs" />
+    <Compile Include="Models\DateStringParser.cs" />
+    <Compile Include="DomainModels\Event.cs" />
+    <Compile Include="DomainModels\EventType.cs" />
+    <Compile Include="Models\GenDate.cs" />
+    <Compile Include="Models\LegacyDateStringParser.cs" />
+    <Compile Include="Models\MonthName.cs" />
+    <Compile Include="DomainModels\Person.cs" />
+    <Compile Include="DomainModels\ByName.cs" />
+    <Compile Include="DomainModels\Place.cs" />
+    <Compile Include="Models\RootsMagicDateStringParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System;
 using SQLite.DAL.Interfaces;
-using SQLite.DAL.Models;
+using SQLite.DAL.DomainModels;
 
 namespace SQLite.DAL.Database
 {
