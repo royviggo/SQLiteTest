@@ -23,20 +23,5 @@ namespace SQLite.WEB.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Test()
-        {
-            var events = EventService.GetAll();
-            var viewModel = Mapper.Map<IEnumerable<Event>, IEnumerable<EventTestViewModel>>(events);
-            //foreach (var e in viewModel)
-            //{
-            //    var dateParser = new DateStringParser();
-            //    var datePart = dateParser.GetDatePartFromStringDate(e.SortDate.ToString());
-            //    e.GenDate = new GenDate(datePart);
-            //    e.SortDate = e.GenDate.SortDate;
-            //    e.DateString = e.GenDate.DateString;
-            //}
-
-            return View(viewModel);
-        }
     }
 }

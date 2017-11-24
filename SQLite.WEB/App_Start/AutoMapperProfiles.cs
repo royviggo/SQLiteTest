@@ -27,7 +27,6 @@ namespace SQLite.WEB
             Mapper.CreateMap<Place, PlaceViewModel>();
             Mapper.CreateMap<Event, EventViewModel>();
             Mapper.CreateMap<EventType, EventTypeViewModel>();
-            Mapper.CreateMap<Event, EventTestViewModel>();
         }
     }
 
