@@ -14,20 +14,19 @@ namespace SQLite.DAL.Models
 
             if (m.Success)
             {
-                GenDateStringType stringTypeOut;
                 GenDateType dateTypeOut;
 
-                if (Enum.TryParse(m.Groups["stype"].Value, out stringTypeOut) && Enum.TryParse(m.Groups["dtype"].Value, out dateTypeOut))
+                if (Enum.TryParse(m.Groups["dtype"].Value, out dateTypeOut))
                 {
                     var fromDate = new DatePart(m.Groups["fyear"].Value, m.Groups["fmonth"].Value, m.Groups["fday"].Value);
                     var toDate = new DatePart(m.Groups["tyear"].Value, m.Groups["tmonth"].Value, m.Groups["tday"].Value);
 
-                    return new GenDate(stringTypeOut, dateTypeOut, fromDate, toDate, true);
+                    return new GenDate(dateTypeOut, fromDate, toDate, true);
                 }
             }
             var datePhrase = dateString.Length > 1 ? dateString.Substring(2, dateString.Length - 1) : "";
 
-            return new GenDate(GenDateStringType.Text, GenDateType.Invalid, datePhrase, false);
+            return new GenDate(GenDateType.Invalid, datePhrase, false);
         }
 
         public DatePart GetDatePartFromStringDate(string sDate)

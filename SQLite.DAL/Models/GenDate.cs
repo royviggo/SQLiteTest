@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using SQLite.DAL.Enums;
 using SQLite.DAL.Extensions;
 using SQLite.DAL.Interfaces;
@@ -10,59 +9,24 @@ namespace SQLite.DAL.Models
 {
     public class GenDate : IEquatable<GenDate>, IComparable<GenDate>
     {
-        private readonly GregorianCalendar _calendar = new GregorianCalendar(GregorianCalendarTypes.Localized);
-        //private string _dateString;
-
         public IDateStringParser StringParser { get; private set; } = new DateStringParser();
 
-        //public string DateString
-        //{
-        //    get { return _dateString; }
-        //    protected set
-        //    {
-        //        _dateString = value;
-        //        var genDate = StringParser.Parse(_dateString);
-        //        DateType = genDate.DateType;
-        //        DateStringType = genDate.DateStringType;
-        //        DateFrom = genDate.DateFrom;
-        //        DateTo = genDate.DateTo;
-        //        DatePhrase = genDate.DatePhrase;
-        //        IsValid = genDate.IsValid;
-        //    }
-        //}
-
         public GenDateType DateType { get; protected set; }
-        //public GenDateStringType DateStringType { get; protected set; }
         public DatePart DateFrom { get; protected set; }
         public DatePart DateTo { get; protected set; }
         public string DatePhrase { get; protected set; }
         public bool IsValid { get; protected set; }
         public int SortDate { get; protected set; }
-
         public string DateString => CreateDateString();
-        //public int SortDate => GetSortDate();
 
-        public GenDate()
-        {
-            //DateFrom = new DatePart();
-            //DateTo = new DatePart();
-            //DateType = GenDateType.Exact;
-            //DateStringType = GenDateStringType.Date;
-            //IsValid = false;
-        }
-
-        //public GenDate(string dateString)
-        //{
-        //    DateString = dateString;
-        //    StringParser.Parse(DateString);
-        //}
+        public GenDate() { }
 
         public GenDate(DatePart datePart)
         {
             DateFrom = datePart;
             DateTo = datePart;
             DateType = GenDateType.Exact;
-            //DateStringType = GenDateStringType.Date;
+            SortDate = GetSortDate();
             IsValid = true;
         }
 
@@ -71,7 +35,7 @@ namespace SQLite.DAL.Models
             DateFrom = datePart;
             DateTo = datePart;
             DateType = dateType;
-            //DateStringType = GenDateStringType.Date;
+            SortDate = GetSortDate();
             IsValid = true;
         }
 
@@ -80,47 +44,38 @@ namespace SQLite.DAL.Models
             DateFrom = fromDatePart;
             DateTo = toDatePart;
             DateType = dateType;
-            //DateStringType = GenDateStringType.Date;
+            SortDate = GetSortDate();
             IsValid = true;
         }
 
-        public GenDate(IDateStringParser parser)
+        public GenDate(GenDateType dateType, DatePart fromDatePart, DatePart toDatePart, bool isValid)
         {
-            StringParser = parser;
-        }
-
-        public GenDate(GenDateStringType stringType, GenDateType dateType, DatePart fromDatePart, DatePart toDatePart, bool isValid)
-        {
-            //DateStringType = stringType;
             DateType = dateType;
             DateFrom = fromDatePart;
             DateTo = toDatePart;
+            SortDate = GetSortDate();
             IsValid = isValid;
         }
 
-        public GenDate(GenDateStringType stringType, GenDateType dateType, string datePhrase, bool isValid)
+        public GenDate(GenDateType dateType, string datePhrase, bool isValid)
         {
-            //DateStringType = stringType;
             DateType = dateType;
             DatePhrase = datePhrase;
+            SortDate = GetSortDate();
             IsValid = isValid;
         }
 
-        //public GenDate Parse(string dateString)
-        //{
-        //    return StringParser.Parse(dateString);
-        //}
-
-        //public GenDate ParseResult(string dateString)
-        //{
-        //    return new GenDate(dateString);
-        //}
-
-        //public GenDate ParseResult(IDateStringParser parser, string dateString)
-        //{
-        //    StringParser = parser;
-        //    return new GenDate(dateString);
-        //}
+        public GenDate(string dateString)
+        {
+            StringParser.Parse(dateString);
+            SortDate = GetSortDate();
+        }
+        public GenDate(IDateStringParser parser, string dateString)
+        {
+            StringParser = parser;
+            StringParser.Parse(dateString);
+            SortDate = GetSortDate();
+        }
 
         public int CompareTo(GenDate other)
         {
