@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using SQLite.DAL.DomainModels;
-using SQLite.DAL.Models;
 
 namespace SQLite.DAL.Database
 {
