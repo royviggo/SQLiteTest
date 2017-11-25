@@ -27,56 +27,48 @@
 <p>
     @if (@Model.DisplayAka != "")
     {
-        <text>@Model.DisplayAka<br /></text>
+        <text>Also known as: @Model.DisplayAka<br /></text>
     }
-    @Model.DisplayYears
+    @if (@Model.DisplayTyponym != "")
+    {
+        <text>Typonym: @Model.DisplayTyponym<br /></text>
+    }
 </p>
 
 <hr />
 
-<h4>Name variants</h4>
-
-<ul>
-    <li>Name: @Model.DisplayName</li>
-    <li>Name with AKA: @Model.DisplayNameAka</li>
-    <li>Name with typonym: @Model.DisplayNameTyponym</li>
-    <li>Name with AKA and typonym: @Model.DisplayNameAkaTyponym</li>
-</ul>
-
-<hr />
-
-<h4>Extra names</h4>
-@if (!Model.ByNames.Any())
-{
-    <text><p>No extra names</p></text>
-}
-<ul>
-    @foreach (var byname in Model.ByNames)
-    {
-        <li>@byname.ByNameType.ToString(): @byname.Name</li>
-    }
-</ul>
-
-<hr />
-
 <h4>Events</h4>
-<dl>
-    @foreach (var e in Model.Events)
-    {
-        <dt>@e.EventType.Name:</dt>
-        <dd>
-            @e.Date
-            @if (e.Place != null && e.Place.Name.Length > 0)
-            {
-                <text> in @e.Place.Name</text>
-            }
-            @if (!string.IsNullOrEmpty(e.Description))
-            {
-                <text> - @e.Description</text>
-            }
-        </dd>
-    }
-</dl>
+<table class="table table-condensed" style="width: 100%">
+    <thead>
+        <tr>
+            <th style="width: 15%">Event Type</th>
+            <th style="width: 15%">Date</th>
+            <th style="width: 35%">Place</th>
+            <th style="width: 35%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model.Events.OrderBy(m => m.Date))
+        {
+            <tr>
+                <td style="vertical-align: top">@e.EventType.Name</td>
+                <td style="vertical-align: top">@e.Date</td>
+                <td style="vertical-align: top">
+                    @if (e.Place != null && e.Place.Name.Length > 0)
+                    {
+                        <text>@e.Place.Name</text>
+                    }
+                </td>
+                <td style="vertical-align: top">
+                    @if (!string.IsNullOrEmpty(e.Description))
+                    {
+                        <text>@e.Description</text>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 <hr />
 

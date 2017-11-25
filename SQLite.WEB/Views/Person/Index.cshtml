@@ -7,7 +7,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover table-condensed">
     <thead>
         <tr>
             <th>First name</th>
@@ -20,12 +20,12 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var person in Model.OrderBy(m => m.BornYear))
+        @foreach (var person in Model.OrderBy(m => m.LastName).ThenBy(m => m.FirstName))
         {
             <tr>
                 <td><a href="@Url.Action("Details", "Person", new {id = person.Id})">@person.FirstName</a></td>
-                <td>@person.Patronym</td>
-                <td>@person.LastName</td>
+                <td><a href="@Url.Action("Details", "Person", new {id = person.Id})">@person.Patronym</a></td>
+                <td><a href="@Url.Action("Details", "Person", new {id = person.Id})">@person.LastName</a></td>
                 <td>@person.DisplayTyponym</td>
                 <td>@person.DisplayYears</td>
                 <td>@person.Gender</td>

@@ -7,14 +7,13 @@
 
 <h2>@ViewBag.Title</h2>
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover table-condensed">
     <thead>
     <tr>
-        <th>Date</th>
-        <th>Event Type</th>
-        <th>Person</th>
-        <th>Place</th>
-        <th>Description</th>
+        <th style="width: 15%">Date</th>
+        <th style="width: 15%">Event Type</th>
+        <th style="width: 35%">Person</th>
+        <th style="width: 35%">Place</th>
     </tr>
     </thead>
     <tbody>
@@ -28,12 +27,6 @@
                     @if (e.Place != null)
                     {
                         <text>@e.Place.Name</text>
-                    }
-                </td>
-                <td>
-                    @if (e.Description != null)
-                    {
-                        <text>@e.Description</text>
                     }
                 </td>
             </tr>
