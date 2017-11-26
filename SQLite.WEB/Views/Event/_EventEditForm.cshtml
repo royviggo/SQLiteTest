@@ -52,3 +52,58 @@
 
 
 <input type="submit" value="Submit" class="btn btn-success" />
+
+@section scripts
+{
+    <script>
+
+        $(document).on('change', '#Date_DateEdit', function(event) {
+            event.preventDefault();
+            parseGenDate(this.val());
+        });
+
+        function parseGenDate(dateString) {
+
+            // RexExp for matching range dates and modificator dates
+            var reRange = /^(bet|mel|fro|fra)\w*?\s+?(.+)\s*?(\-|and|og|och|to|til|till)\s*?(.+)$/i;
+            var reModi = /^(abt|ca|omt|bef|før|för|aft|ett|eft|cal|kal)\w*?\s+?([\w\d]{1,4}\b.*)/i;
+
+            // Test single date first
+            var singleDate = parseSingleDate(dateString);
+            if (singleDate) {
+
+            }
+            else {
+                // Test modificator
+                var modiArr = reModi.exec(dateString);
+                if (modiArr) {
+                    var modiDate = parseSingleDate(modiArr[1]);
+                } else {
+                    // Test range
+                    var rangeArr = reRange.exec(dateString);
+                    if (rangeArr) {
+                        var fromDate = parseSingleDate(rangeArr[1]);
+                        var toDate = parseSingleDate(rangeArr[3]);
+                    }
+                    else {
+                        // Leave the string as is
+                    }
+                }
+            }
+        }
+
+        function parseSingleDate(dateString) {
+
+            // Matching single dates
+            var reGenDateFull = /^(\d{1,2})[\s\-\/\.]+?(jan|feb|mar|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|des|dec)\w*[\s\-\/\.]+?(\d{4})$/i;
+            var reGenDateMon = /^(jan|feb|mar|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|des|dec)\w*[\s\-\/\.]+?(\d{4})$/;
+            var reIsoDateFull = /^(\d{4})\-(\d\d)\-(\d\d)$/;
+            var reIsoDateMon = /^(\d{4})\-(\d\d)$/;
+            var reNorDateFull = /^(\d\d)\.(\d\d)\.(\d{4})$/;
+            var reYear = /^(\d{4})$/;
+
+
+        }
+
+    </script>
+}
