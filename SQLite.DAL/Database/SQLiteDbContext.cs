@@ -8,6 +8,10 @@ namespace SQLite.DAL.Database
         public SQLiteDbContext() : base("Name=SQLiteDbContext") {}
 
         public DbSet<Person> Persons { get; set; }
+        public DbSet<ByName> ByNames { get; set; }
+        public DbSet<Place> Places { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<EventType> EventTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

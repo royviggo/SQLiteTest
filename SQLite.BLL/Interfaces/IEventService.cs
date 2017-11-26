@@ -7,6 +7,8 @@ namespace SQLite.BLL.Interfaces
     {
         Event GetById(int id);
         IEnumerable<Event> GetAll();
+        IEnumerable<Place> GetPlaces();
+        IEnumerable<EventType> GetEventTypes();
 
         int Create(Event e);
         void Update(Event e);

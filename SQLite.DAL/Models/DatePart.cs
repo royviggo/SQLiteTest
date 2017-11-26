@@ -48,18 +48,18 @@ namespace SQLite.DAL.Models
 
         public static int CompareValue(DatePart datePart)
         {
-            return datePart.Year * 10000 + datePart.Month * 100 + datePart.Day;
+            return datePart != null ? (datePart.Year * 10000 + datePart.Month * 100 + datePart.Day) : 0;
         }
 
-        public static bool operator ==(DatePart obj1, DatePart obj2)
-        {
-            return obj1 != null && (Equals(obj1, obj2) || obj1.Equals(obj2));
-        }
+        //public static bool operator ==(DatePart obj1, DatePart obj2)
+        //{
+        //    return obj1 != null && obj1.Equals(obj2);
+        //}
 
-        public static bool operator !=(DatePart obj1, DatePart obj2)
-        {
-            return !(obj1 == obj2);
-        }
+        //public static bool operator !=(DatePart obj1, DatePart obj2)
+        //{
+        //    return obj1 != null && obj2 != null && !obj1.Equals(obj2);
+        //}
 
         public bool Equals(DatePart other)
         {

@@ -19,6 +19,12 @@ namespace SQLite.DAL.Database
         private IRepository<Event> _eventRepository;
         public IRepository<Event> EventRepository => _eventRepository ?? (_eventRepository = new GenericRepository<Event>(DbContext));
 
+        private IRepository<Place> _placeRepository;
+        public IRepository<Place> PlaceRepository => _placeRepository ?? (_placeRepository = new GenericRepository<Place>(DbContext));
+
+        private IRepository<EventType> _eventTypeRepository;
+        public IRepository<EventType> EventTypeRepository => _eventTypeRepository ?? (_eventTypeRepository = new GenericRepository<EventType>(DbContext));
+
         public void Save()
         {
             DbContext.SaveChanges();

@@ -1,0 +1,54 @@
+﻿@using System.Web.UI.WebControls
+@model SQLite.WEB.Models.EventEditModel
+
+<div class="row">
+    <div class="col-sm-8">
+        <div class="form-group">
+            <strong>@Model.EventType.Name<br/>@Model.Person.DisplayName</strong>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-8">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Date.DateEdit)
+            @Html.TextBoxFor(m => m.Date.DateEdit, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Date.DateEdit)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-lg-10">
+        <div class="form-group">
+            @Html.LabelFor(m => m.PlaceId)
+            @Html.DropDownListFor(m => m.PlaceId, Model.PlaceList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PlaceId)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description)
+            @Html.TextBoxFor(m => m.Description, new {@class = "form-control"})
+        </div>
+    </div>
+</div>
+
+@Html.HiddenFor(m => m.PersonId)
+@Html.HiddenFor(m => m.EventTypeId)
+
+@Html.HiddenFor(m => m.Date.DateType)
+@Html.HiddenFor(m => m.Date.DateFrom.Year)
+@Html.HiddenFor(m => m.Date.DateFrom.Month)
+@Html.HiddenFor(m => m.Date.DateFrom.Day)
+@Html.HiddenFor(m => m.Date.DateTo.Year)
+@Html.HiddenFor(m => m.Date.DateTo.Month)
+@Html.HiddenFor(m => m.Date.DateTo.Day)
+@Html.HiddenFor(m => m.Date.DatePhrase)
+@Html.HiddenFor(m => m.Date.IsValid)
+@Html.HiddenFor(m => m.Date.SortDate)
+
+
+<input type="submit" value="Submit" class="btn btn-success" />

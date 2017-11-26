@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SQLite.DAL.Interfaces;
 
 namespace SQLite.DAL.DomainModels
 {
-    public class EventType
+    public class EventType : IEntity
     {
         [Key, Column("id")]
         [Required]
@@ -11,5 +13,11 @@ namespace SQLite.DAL.DomainModels
 
         [Column("name"), MaxLength(255)]
         public string Name { get; set; }
+
+        [Column("created_date")]
+        public DateTime? CreatedDate { get; set; }
+
+        [Column("modified_date")]
+        public DateTime? ModifiedDate { get; set; }
     }
 }

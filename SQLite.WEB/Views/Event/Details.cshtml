@@ -1,0 +1,19 @@
+﻿@model SQLite.WEB.Models.EventViewModel
+
+@{
+    ViewBag.Title = "Event";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>@ViewBag.Title</h3>
+
+<ul>
+    <li>Id: @Model.Id</li>
+    <li>Event Type: @Model.EventType.Name</li>
+    <li>Date: @Model.Date</li>
+    <li>Person: @Model.Person.DisplayNameAkaTyponym</li>
+    <li>Place: @Model.Place.Name</li>
+    <li>Description: @Model.Description</li>
+</ul>
+
+<p><a href="@Url.Action("Edit", "Event", new {id = Model.Id})" class="btn btn-default">Edit</a></p>

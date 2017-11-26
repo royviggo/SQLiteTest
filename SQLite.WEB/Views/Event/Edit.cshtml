@@ -1,0 +1,19 @@
+﻿@model SQLite.WEB.Models.EventEditModel
+
+@{
+    ViewBag.Title = "Edit Event";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form id="EditForm" role="form" method="POST" autocomplete="off">
+            @{
+                Html.RenderPartial("_EventEditForm", Model);
+            }
+            @Html.HiddenFor(m => m.Id)
+        </form>
+    </div>
+</div>

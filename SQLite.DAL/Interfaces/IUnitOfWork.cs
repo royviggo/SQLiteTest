@@ -6,6 +6,8 @@ namespace SQLite.DAL.Interfaces
     {
         IRepository<Person> PersonRepository { get; }
         IRepository<Event> EventRepository { get; }
+        IRepository<EventType> EventTypeRepository { get; }
+        IRepository<Place> PlaceRepository { get; }
 
         void Save();
         void Dispose();

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SQLite.DAL.DomainModels;
+using SQLite.DAL.Models;
 using SQLite.WEB.Models;
 
 namespace SQLite.WEB
@@ -26,7 +27,11 @@ namespace SQLite.WEB
             Mapper.CreateMap<ByName, ByNameViewModel>();
             Mapper.CreateMap<Place, PlaceViewModel>();
             Mapper.CreateMap<Event, EventViewModel>();
+            Mapper.CreateMap<Event, EventEditModel>();
             Mapper.CreateMap<EventType, EventTypeViewModel>();
+
+            Mapper.CreateMap<GenDate, GenDateEditModel>();
+            Mapper.CreateMap<DatePart, DatePartEditModel>();
         }
     }
 
@@ -40,7 +45,11 @@ namespace SQLite.WEB
             Mapper.CreateMap<ByNameViewModel, ByName>();
             Mapper.CreateMap<PlaceViewModel, Place>();
             Mapper.CreateMap<EventViewModel, Event>();
+            Mapper.CreateMap<EventEditModel, Event>();
             Mapper.CreateMap<EventTypeViewModel, EventType>();
+
+            Mapper.CreateMap<GenDateEditModel, GenDate>();
+            Mapper.CreateMap<DatePartEditModel, DatePart>();
         }
     }
 

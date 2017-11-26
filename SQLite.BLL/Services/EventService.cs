@@ -25,6 +25,16 @@ namespace SQLite.BLL.Services
             return _sqliteUnitOfWork.EventRepository.GetAll();
         }
 
+        public IEnumerable<Place> GetPlaces()
+        {
+            return _sqliteUnitOfWork.PlaceRepository.GetAll();
+        }
+
+        public IEnumerable<EventType> GetEventTypes()
+        {
+            return _sqliteUnitOfWork.EventTypeRepository.GetAll();
+        }
+
         public int Create(Event e)
         {
             e.CreatedDate = DateTime.Now;

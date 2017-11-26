@@ -21,7 +21,7 @@
         {
             <tr>
                 <td>@e.Date</td>
-                <td>@e.EventType.Name</td>
+                <td><a href="@Url.Action("Details", "Event", new {id = e.Id})">@e.EventType.Name</a></td>
                 <td><a href="@Url.Action("Details", "Person", new {id = e.Person.Id})">@e.Person.DisplayNameTyponym</a></td>
                 <td>
                     @if (e.Place != null)
