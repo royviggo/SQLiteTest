@@ -102,7 +102,23 @@
             var reNorDateFull = /^(\d\d)\.(\d\d)\.(\d{4})$/;
             var reYear = /^(\d{4})$/;
 
+            var genDate = reGenDateFull.exec(dateString);
+            if (genDate != null)
+                return new { Year: genDate[2], Month: genDate[1], Day: genDate[0] };
 
+            var isoDateFull = reIsoDateFull.exec(dateString);
+            if (isoDateFull)
+                return new { Year: isoDateFull[0], Month: isoDateFull[1], Day: isoDateFull[2] };
+
+            var norDateFull = reNorDateFull.exec(dateString);
+            if (norDateFull)
+                return new { Year: norDateFull[0], Month: norDateFull[1], Day: norDateFull[2] };
+
+            genDate = reGenDateMon.exec(dateString);
+            if (genDate)
+                return new { Year: genDate[1], Month: genDate[0], Day: 0 };
+
+            return false;
         }
 
     </script>
