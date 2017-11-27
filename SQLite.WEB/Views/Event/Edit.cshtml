@@ -17,3 +17,160 @@
         </form>
     </div>
 </div>
+
+@section scripts
+{
+    <script>
+
+        $(document).on('change', '#Date_DateEdit', function(event) {
+            console.log('HEY');
+            //event.preventDefault();
+            var genDate = parseGenDate($(this).val());
+            console.log('parsed genDate:', genDate);
+
+            $('#Date_DateType').val(genDate.DateType);
+            $('#Date_DateFrom_Year').val(genDate.DateFrom.Year);
+            $('#Date_DateFrom_Month').val(genDate.DateFrom.Month);
+            $('#Date_DateFrom_Day').val(genDate.DateFrom.Day);
+            $('#Date_DateTo_Year').val(genDate.DateTo.Year);
+            $('#Date_DateTo_Month').val(genDate.DateTo.Month);
+            $('#Date_DateTo_Day').val(genDate.DateTo.Day);
+            $('#Date_DatePhrase').val(genDate.DatePhrase);
+            $('#Date_IsValid').val(genDate.IsValid);
+            $('#Date_SortDate').val(genDate.SortDate);
+
+            $('#Date_DateEdit').val(formatGenDate(genDate));
+        });
+
+        function parseGenDate(dateString) {
+            var rangeTypeArr = { bet: 5, mel: 5, fro: 6, fra: 6, frå: 6 };
+            var dateModiArr = { abt: 3, ca: 3, omt: 3, bef: 1, før: 1, för: 1, aft: 7, ett: 7, eft: 7, cal: 4, kal: 4 };
+
+            // RexExp for matching range dates and modificator dates
+            var reRange = /^(bet|mel|fro|fra|frå)\w*?\s+?(.+)\s+?(\-|and|og|och|to|til|till)\s+?(.+)$/i;
+            var reModi = /^(abt|ca|omt|bef|før|för|aft|ett|eft|cal|kal)\w*?\s+?([\w\d]{1,4}\b.*)/i;
+
+            dateString = dateString.trim();
+
+            // Test single date first
+            var singleDate = parseSingleDate(dateString);
+            if (singleDate) {
+                return { DateType: 2, DateFrom: singleDate, DateTo: singleDate, DatePhrase: "", IsValid: true, SortDate: getSortDate(singleDate, 2) }
+            }
+            else {
+                // Test modificator
+                var modiArr = reModi.exec(dateString);
+                if (modiArr) {
+                    var modiDate = parseSingleDate(modiArr[2].trim());
+                    var modiType = dateModiArr[modiArr[1].toLowerCase()];
+                    if (modiDate && modiType)
+                        return { DateType: modiType, DateFrom: modiDate, DateTo: modiDate, DatePhrase: "", IsValid: true, SortDate: getSortDate(modiDate, modiType) }
+                    return { DateType: 0, DateFrom: { Year: 0, Month: 0, Day: 0 }, DateTo: { Year: 0, Month: 0, Day: 0 }, DatePhrase: dateString, IsValid: false, SortDate: 0 }
+                } else {
+                    // Test range
+                    var rangeArr = reRange.exec(dateString);
+                    console.log('range:', rangeArr);
+                    if (rangeArr) {
+                        var fromDate = parseSingleDate(rangeArr[2].trim());
+                        var toDate = parseSingleDate(rangeArr[4].trim());
+                        var rangeType = rangeTypeArr[rangeArr[1].toLowerCase()];
+                        if (fromDate && toDate && rangeType)
+                            return { DateType: rangeType, DateFrom: fromDate, DateTo: toDate, DatePhrase: "", IsValid: true, SortDate: getSortDate(fromDate, rangeType) }
+                        return { DateType: 0, DateFrom: { Year: 0, Month: 0, Day: 0 }, DateTo: { Year: 0, Month: 0, Day: 0 }, DatePhrase: dateString, IsValid: false, SortDate: 0 }
+                    }
+                    else {
+                        // Leave the string as is
+                        return { DateType: 0, DateFrom: { Year: 0, Month: 0, Day: 0 }, DateTo: { Year: 0, Month: 0, Day: 0 }, DatePhrase: dateString, IsValid: false, SortDate: 0 }
+                    }
+                }
+            }
+        }
+
+        function parseSingleDate(dateString) {
+            var monthNo = { jan: 1, feb: 2, mar: 3, apr: 4, mai: 5, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, okt: 10, nov: 11, des: 12, dec: 12 };
+
+            // Matching single dates
+            var reGenDateFull = /^(\d{1,2})[\s\-\/\.]+?(jan|feb|mar|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|des|dec)\w*[\s\-\/\.]+?(\d{4})$/i;
+            var reGenDateMon = /^(jan|feb|mar|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|des|dec)\w*[\s\-\/\.]+?(\d{4})$/i;
+            var reIsoDateFull = /^(\d{4})[\s\-\/\.]+?(\d\d?)[\s\-\/\.]+?(\d\d?)$/;
+            var reIsoDateMon = /^(\d{4})[\s\-\/\.]+?(\d\d?)$/;
+            var reNorDateFull = /^(\d\d?)[\s\-\/\.]+?(\d\d?)[\s\-\/\.]+?(\d{4})$/;
+            var reYear = /^(\d{4})$/;
+
+            var genDate = reGenDateFull.exec(dateString);
+            console.log('reGenDateFull', genDate);
+            if (genDate != null)
+                return { Year: Number(genDate[3]), Month: monthNo[genDate[2].toLowerCase()], Day: Number(genDate[1]) };
+
+            genDate = reIsoDateFull.exec(dateString);
+            console.log('reIsoDateFull', genDate);
+            if (genDate)
+                return { Year: Number(genDate[1]), Month: Number(genDate[2]), Day: Number(genDate[3]) };
+
+            genDate = reNorDateFull.exec(dateString);
+            console.log('reNorDateFull', genDate);
+            if (genDate)
+                return { Year: Number(genDate[3]), Month: Number(genDate[2]), Day: Number(genDate[1]) };
+
+            genDate = reGenDateMon.exec(dateString);
+            console.log('reGenDateMon', genDate);
+            if (genDate)
+                return { Year: Number(genDate[2]), Month: monthNo[genDate[1].toLowerCase()], Day: 0 };
+
+            genDate = reIsoDateMon.exec(dateString);
+            console.log('reIsoDateMon', genDate);
+            if (genDate)
+                return { Year: Number(genDate[1]), Month: Number(genDate[2]), Day: 0 };
+
+            genDate = reYear.exec(dateString);
+            console.log('reYear', genDate);
+            if (genDate)
+                return { Year: Number(genDate[1]), Month: 0, Day: 0 };
+
+            return false;
+        }
+
+        function getSortDate(datePart, dateType) {
+            return ((datePart.Year * 10000) + (datePart.Month * 100) + Number(datePart.Day)) * 10 + dateType;
+        }
+
+        function formatGenDate(genDate) {
+            var typeNames = { 0: "", 1: "Bef. ", 2: "", 3: "Abt. ", 4: "Cal. ", 5: "Bet. ", 6: "From ", 7: "Aft. " };
+            var rangeJoin = { 5: " - ", 6: " to " };
+
+            if (!genDate.IsValid)
+                return genDate.DatePhrase;
+
+            var result = typeNames[genDate.DateType];
+            result += formatDatePart(genDate.DateFrom);
+
+            if (genDate.DateType === 5 || genDate.DateType === 6)
+                result += rangeJoin[genDate.DateType] + formatDatePart(genDate.DateTo);
+
+            return result;
+        }
+
+        function formatDatePart(date) {
+            var monthNames = { 1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "May", 6: "Jun", 7: "Jul", 8: "Aug", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Dec" };
+
+            var output = date.Day > 0 && date.Day <= 31 ? padLeft(date.Day.toString(), 2, '0') : "";
+            var month = date.Month > 0 && date.Month <= 12 ? monthNames[date.Month] : "";
+            var year = date.Year > 0 ? date.Year : "";
+
+            output += output !== "" && month !== "" ? " " : "";
+            output += month;
+            output += output !== "" && year !== "" ? " " : "";
+
+            return output + year;
+        }
+
+        function padLeft(str, len, chr) {
+            var result = str;
+            while (result.length < len) {
+                result = chr + result;
+            }
+            return result;
+        }
+    </script>
+}
+

@@ -120,7 +120,19 @@ namespace SQLite.DAL.Models
 
         public override string ToString()
         {
-            return DateFrom.ToString();
+            var typeNames = new Dictionary<int, string> { {0, ""}, {1, "Bef. "}, {2, ""}, {3, "Abt. "}, {4, "Cal. "}, {5, "Bet. "}, {6, "From "}, {7, "Aft. "} };
+            var rangeJoin = new Dictionary<int, string> { {5, " - "}, {6, " to "} };
+
+            if (!IsValid)
+                return DatePhrase;
+
+            var result = typeNames[(int)DateType];
+            result += DateFrom.ToString();
+
+            if (DateType == GenDateType.Between || DateType == GenDateType.FromTo)
+                result += rangeJoin[(int)DateType] + DateTo;
+
+            return result;
         }
 
         private int GetSortDate()
