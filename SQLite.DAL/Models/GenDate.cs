@@ -11,12 +11,12 @@ namespace SQLite.DAL.Models
     {
         public IDateStringParser StringParser { get; private set; } = new DateStringParser();
 
-        public GenDateType DateType { get; protected set; }
-        public DatePart DateFrom { get; protected set; }
-        public DatePart DateTo { get; protected set; }
-        public string DatePhrase { get; protected set; }
-        public bool IsValid { get; protected set; }
-        public int SortDate { get; protected set; }
+        public GenDateType DateType { get; set; }
+        public DatePart DateFrom { get;  set; }
+        public DatePart DateTo { get;  set; }
+        public string DatePhrase { get;  set; }
+        public bool IsValid { get;  set; }
+        public int SortDate { get;  set; }
         public string DateString => CreateDateString();
 
         public GenDate() { }
@@ -79,7 +79,8 @@ namespace SQLite.DAL.Models
 
         public int CompareTo(GenDate other)
         {
-            return DateFrom.CompareTo(other.DateFrom);
+            var sortDate = GetSortDate();
+            return sortDate.CompareTo(other.SortDate);
 
         }
 

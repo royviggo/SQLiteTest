@@ -6,9 +6,9 @@ namespace SQLite.DAL.Models
     [ComplexType]
     public class DatePart : IEquatable<DatePart>, IComparable<DatePart>
     {
-        public int Year { get; protected set; }
-        public int Month { get; protected set; }
-        public int Day { get; protected set; }
+        public int Year { get;  set; }
+        public int Month { get;  set; }
+        public int Day { get;  set; }
 
         public DatePart() { }
 

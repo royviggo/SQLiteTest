@@ -51,7 +51,7 @@
         @foreach (var e in Model.Events.OrderBy(m => m.Date))
         {
             <tr>
-                <td style="vertical-align: top">@e.EventType.Name</td>
+                <td style="vertical-align: top"><a href="@Url.Action("Edit", "Event", new { id = e.Id })">@e.EventType.Name</a></td>
                 <td style="vertical-align: top">@e.Date</td>
                 <td style="vertical-align: top">
                     @if (e.Place != null && e.Place.Name.Length > 0)

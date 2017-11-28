@@ -46,9 +46,11 @@ namespace SQLite.WEB.Controllers
         [HttpPost]
         public ActionResult Edit(EventEditModel model)
         {
+            var oldModel = EventService.GetById(model.Id);
             try
             {
                 var updateModel = Mapper.Map<EventEditModel, Event>(model);
+                updateModel.CreatedDate = oldModel.CreatedDate;
                 EventService.Update(updateModel);
                 return RedirectToAction("Details", new { id = model.Id });
             }

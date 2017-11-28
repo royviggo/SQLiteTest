@@ -48,6 +48,8 @@ namespace SQLite.BLL.Services
 
         public void Update(Event e)
         {
+            if (e.CreatedDate == null)
+                e.CreatedDate = DateTime.Now;
             e.ModifiedDate = DateTime.Now;
 
             _sqliteUnitOfWork.EventRepository.Update(e);

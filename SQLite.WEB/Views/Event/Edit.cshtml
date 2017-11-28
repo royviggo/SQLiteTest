@@ -90,7 +90,7 @@
 
             // Matching single dates
             var reGenDateFull = /^(\d{1,2})[\s\-\/\.]+?(jan|feb|mar|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|des|dec)\w*[\s\-\/\.]+?(\d{4})$/i;
-            var reGenDateMon = /^(jan|feb|mar|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|des|dec)\w*[\s\-\/\.]+?(\d{4})$/i;
+            var reGenDateMonYear = /^(jan|feb|mar|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|des|dec)\w*[\s\-\/\.]+?(\d{4})$/i;
             var reIsoDateFull = /^(\d{4})[\s\-\/\.]+?(\d\d?)[\s\-\/\.]+?(\d\d?)$/;
             var reIsoDateMon = /^(\d{4})[\s\-\/\.]+?(\d\d?)$/;
             var reNorDateFull = /^(\d\d?)[\s\-\/\.]+?(\d\d?)[\s\-\/\.]+?(\d{4})$/;
@@ -108,7 +108,7 @@
             if (genDate)
                 return { Year: Number(genDate[3]), Month: Number(genDate[2]), Day: Number(genDate[1]) };
 
-            genDate = reGenDateMon.exec(dateString);
+            genDate = reGenDateMonYear.exec(dateString);
             if (genDate)
                 return { Year: Number(genDate[2]), Month: monthNo[genDate[1].toLowerCase()], Day: 0 };
 
