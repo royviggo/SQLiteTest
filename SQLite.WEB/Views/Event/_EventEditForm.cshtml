@@ -12,9 +12,11 @@
 <div class="row">
     <div class="col-sm-8">
         <div class="form-group">
-            @Html.LabelFor(m => m.Date.DateEdit)
+            @*@Html.LabelFor(m => m.Date.DateEdit)
             @Html.TextBoxFor(m => m.Date.DateEdit, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Date.DateEdit)
+            @Html.ValidationMessageFor(m => m.Date.DateEdit)*@
+            @Html.LabelFor(m => m.Date)
+            <input name="Date_DateEdit" id="Date_DateEdit" value="@Model.Date.ToString()" class="form-control">
         </div>
     </div>
 </div>

@@ -19,7 +19,7 @@ namespace SQLite.WEB.Models
 
         public int PlaceId { get; set; }
         public PlaceViewModel Place { get; set; }
-        public GenDateEditModel Date { get; set; }
+        public GenDate Date { get; set; }
         public string Description { get; set; }
 
         public IEnumerable<SelectListItem> EventTypeList { get; set; }

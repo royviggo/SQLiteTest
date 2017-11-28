@@ -37,7 +37,6 @@ namespace SQLite.WEB.Controllers
         {
             var model = EventService.GetById(id);
             var viewModel = Mapper.Map<Event, EventEditModel>(model);
-            viewModel.Date.DateEdit = model.Date.ToString();
             viewModel.EventTypeList = EventService.GetEventTypes().OrderBy(m => m.Name).ToDictionary(k => k.Id, v => v.Name).ToSelectList();
             viewModel.PlaceList = EventService.GetPlaces().OrderBy(m => m.Name).ToDictionary(k => k.Id, v => v.Name).ToSelectList();
             return View(viewModel);
@@ -52,7 +51,7 @@ namespace SQLite.WEB.Controllers
                 var updateModel = Mapper.Map<EventEditModel, Event>(model);
                 updateModel.CreatedDate = oldModel.CreatedDate;
                 EventService.Update(updateModel);
-                return RedirectToAction("Details", new { id = model.Id });
+                return RedirectToAction("Details", "Person", new { id = model.PersonId });
             }
             catch (Exception e)
             {
