@@ -23,8 +23,8 @@
     <script>
 
         $(document).on('change', '#Date_DateEdit', function(event) {
-            console.log('HEY');
-            //event.preventDefault();
+            event.preventDefault();
+
             var genDate = parseGenDate($(this).val());
             console.log('parsed genDate:', genDate);
 
@@ -69,7 +69,6 @@
                 } else {
                     // Test range
                     var rangeArr = reRange.exec(dateString);
-                    console.log('range:', rangeArr);
                     if (rangeArr) {
                         var fromDate = parseSingleDate(rangeArr[2].trim());
                         var toDate = parseSingleDate(rangeArr[4].trim());
@@ -98,32 +97,26 @@
             var reYear = /^(\d{4})$/;
 
             var genDate = reGenDateFull.exec(dateString);
-            console.log('reGenDateFull', genDate);
             if (genDate != null)
                 return { Year: Number(genDate[3]), Month: monthNo[genDate[2].toLowerCase()], Day: Number(genDate[1]) };
 
             genDate = reIsoDateFull.exec(dateString);
-            console.log('reIsoDateFull', genDate);
             if (genDate)
                 return { Year: Number(genDate[1]), Month: Number(genDate[2]), Day: Number(genDate[3]) };
 
             genDate = reNorDateFull.exec(dateString);
-            console.log('reNorDateFull', genDate);
             if (genDate)
                 return { Year: Number(genDate[3]), Month: Number(genDate[2]), Day: Number(genDate[1]) };
 
             genDate = reGenDateMon.exec(dateString);
-            console.log('reGenDateMon', genDate);
             if (genDate)
                 return { Year: Number(genDate[2]), Month: monthNo[genDate[1].toLowerCase()], Day: 0 };
 
             genDate = reIsoDateMon.exec(dateString);
-            console.log('reIsoDateMon', genDate);
             if (genDate)
                 return { Year: Number(genDate[1]), Month: Number(genDate[2]), Day: 0 };
 
             genDate = reYear.exec(dateString);
-            console.log('reYear', genDate);
             if (genDate)
                 return { Year: Number(genDate[1]), Month: 0, Day: 0 };
 
