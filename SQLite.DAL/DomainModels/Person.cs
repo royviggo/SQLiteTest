@@ -47,5 +47,8 @@ namespace SQLite.DAL.DomainModels
 
         [ForeignKey("PersonId")]
         public virtual ICollection<Event> Events { get; set; } = new List<Event>();
+
+        [ForeignKey("PersonId")]
+        public virtual ICollection<PersonFamily> Families { get; set; } = new List<PersonFamily>();
     }
 }

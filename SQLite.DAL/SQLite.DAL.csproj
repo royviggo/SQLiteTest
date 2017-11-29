@@ -105,7 +105,10 @@
     <Compile Include="Database\SQLiteConnectionFactory.cs" />
     <Compile Include="Database\SQLiteDbContext.cs" />
     <Compile Include="Database\SQLiteUnitOfWork.cs" />
+    <Compile Include="DomainModels\Family.cs" />
+    <Compile Include="DomainModels\PersonFamily.cs" />
     <Compile Include="Enums\ByNameType.cs" />
+    <Compile Include="Enums\FamilyRole.cs" />
     <Compile Include="Enums\GenDateStringType.cs" />
     <Compile Include="Enums\GenDateType.cs" />
     <Compile Include="Enums\Gender.cs" />

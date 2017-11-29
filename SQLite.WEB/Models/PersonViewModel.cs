@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SQLite.DAL.DomainModels;
 using SQLite.DAL.Enums;
 
 namespace SQLite.WEB.Models
@@ -16,6 +17,7 @@ namespace SQLite.WEB.Models
 
         public IEnumerable<ByNameViewModel> ByNames { get; set; }
         public IEnumerable<EventViewModel> Events { get; set; }
+        public IEnumerable<PersonFamilyViewModel> Families { get; set; }
 
         public Gender Gender { get; set; }
 
@@ -34,5 +36,8 @@ namespace SQLite.WEB.Models
                                         (Patronym != "" || LastName != "" ? " " : "") + Patronym + (LastName != "" ? " " : "") + LastName;
         public string DisplayNameAkaTyponym => DisplayNameAka + (DisplayTyponym != "" ? " " : "") + DisplayTyponym;
         public string DisplayYears => BornYear + " - " + DeathYear;
+
+        public PersonFamilyViewModel Parents => Families.FirstOrDefault(m => m.FamilyRole == FamilyRole.Child);
+        public IEnumerable<PersonFamilyViewModel> Spouses => Families.Where(m => m.FamilyRole != FamilyRole.Child);
     }
 }

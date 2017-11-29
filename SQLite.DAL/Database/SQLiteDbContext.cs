@@ -12,6 +12,8 @@ namespace SQLite.DAL.Database
         public DbSet<Place> Places { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventType> EventTypes { get; set; }
+        public DbSet<Family> Families { get; set; }
+        public DbSet<PersonFamily> PersonFamilies { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -20,6 +22,8 @@ namespace SQLite.DAL.Database
             modelBuilder.Entity<Place>().ToTable("place", "");
             modelBuilder.Entity<Event>().ToTable("event", "");
             modelBuilder.Entity<EventType>().ToTable("event_type", "");
+            modelBuilder.Entity<Family>().ToTable("family", "");
+            modelBuilder.Entity<PersonFamily>().ToTable("person_family", "");
 
             System.Data.Entity.Database.SetInitializer<SQLiteDbContext>(null);
             base.OnModelCreating(modelBuilder);

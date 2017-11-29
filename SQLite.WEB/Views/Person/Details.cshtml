@@ -1,4 +1,6 @@
-﻿@model SQLite.WEB.Models.PersonViewModel
+﻿@using SQLite.DAL.Enums
+@using SQLite.WEB.Models
+@model SQLite.WEB.Models.PersonViewModel
 
 @{
     ViewBag.Title = "Person";
@@ -69,6 +71,63 @@
         }
     </tbody>
 </table>
+
+<hr />
+
+<h4>Parents</h4>
+<table class="table table-condensed" style="width: 100%">
+    <tbody>
+        <tr>
+            <td style="vertical-align: top">Father</td>
+            <td style="vertical-align: top">
+                @if (Model.Parents != null && Model.Parents.Family.Father != null)
+                {
+                    <a href="@Url.Action("Details", "Person", new {id = @Model.Parents.Family.Father.PersonId})">@Model.Parents.Family.Father.Person.DisplayName</a> @Model.Parents.Family.Father.Person.DisplayYears
+                }
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top">Mother</td>
+            <td style="vertical-align: top">
+                @if (Model.Parents != null && Model.Parents.Family.Mother != null)
+                {
+                    <a href="@Url.Action("Details", "Person", new {id = @Model.Parents.Family.Mother.PersonId})">@Model.Parents.Family.Mother.Person.DisplayName</a> @Model.Parents.Family.Mother.Person.DisplayYears
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+
+@foreach (var familiy in Model.Spouses.Select(m => m.Family))
+{
+    <h4>Spouse:
+        @{
+            var personFamilyViewModel = @familiy.Parents.FirstOrDefault(m => m.PersonId != Model.Id);
+        }
+        @* ReSharper disable once PossibleNullReferenceException *@
+        @if (personFamilyViewModel != null)
+        {
+            <a href="@Url.Action("Details", "Person", new {id = personFamilyViewModel.PersonId})">@familiy.Parents.FirstOrDefault(m => m.PersonId != Model.Id).Person.DisplayName</a>
+            @familiy.Parents.FirstOrDefault(m => m.PersonId != Model.Id).Person.DisplayYears
+        }
+        else
+        {<text>Unknown</text>}
+    </h4>
+    <h4>Children</h4>
+    <table class="table table-condensed" style="width: 100%">
+        <tbody>
+            @foreach (var child in familiy.Children)
+            {
+            <tr>
+                <td style="vertical-align: top"><a href="@Url.Action("Details", "Person", new {id = @child.PersonId})">@child.Person.DisplayName</a></td>
+                <td>@child.Person.DisplayYears</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
 
 <hr />
 

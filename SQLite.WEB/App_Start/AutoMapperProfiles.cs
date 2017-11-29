@@ -29,6 +29,8 @@ namespace SQLite.WEB
             Mapper.CreateMap<Event, EventViewModel>();
             Mapper.CreateMap<Event, EventEditModel>();
             Mapper.CreateMap<EventType, EventTypeViewModel>();
+            Mapper.CreateMap<Family, FamilyViewModel>();
+            Mapper.CreateMap<PersonFamily, PersonFamilyViewModel>();
 
             Mapper.CreateMap<GenDate, GenDateEditModel>();
             Mapper.CreateMap<DatePart, DatePartEditModel>();
@@ -47,6 +49,8 @@ namespace SQLite.WEB
             Mapper.CreateMap<EventViewModel, Event>();
             Mapper.CreateMap<EventEditModel, Event>();
             Mapper.CreateMap<EventTypeViewModel, EventType>();
+            Mapper.CreateMap<FamilyViewModel, Family>();
+            Mapper.CreateMap<PersonFamilyViewModel, PersonFamily>();
 
             Mapper.CreateMap<GenDateEditModel, GenDate>();
             Mapper.CreateMap<DatePartEditModel, DatePart>();

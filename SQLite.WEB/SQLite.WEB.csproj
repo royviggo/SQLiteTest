@@ -181,7 +181,9 @@
     <Compile Include="Models\EventEditModel.cs" />
     <Compile Include="Models\EventTypeViewModel.cs" />
     <Compile Include="Models\EventViewModel.cs" />
+    <Compile Include="Models\FamilyViewModel.cs" />
     <Compile Include="Models\GenDateEditModel.cs" />
+    <Compile Include="Models\PersonFamilyViewModel.cs" />
     <Compile Include="Models\PersonViewModel.cs" />
     <Compile Include="Models\ByNameViewModel.cs" />
     <Compile Include="Models\PlaceViewModel.cs" />
