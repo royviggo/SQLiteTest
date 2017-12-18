@@ -57,6 +57,5 @@ namespace SQLite.BLL.Services
             _sqliteUnitOfWork.PersonRepository.Delete(person);
             _sqliteUnitOfWork.Save();
         }
-
     }
 }
