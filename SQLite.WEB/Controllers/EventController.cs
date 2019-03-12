@@ -53,7 +53,7 @@ namespace SQLite.WEB.Controllers
                 EventService.Update(updateModel);
                 return RedirectToAction("Details", "Person", new { id = model.PersonId });
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return View(model);
             }
